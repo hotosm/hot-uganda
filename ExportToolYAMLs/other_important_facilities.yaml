@@ -1,0 +1,66 @@
+centres_and_stations:
+  types:
+    - points
+  select:   
+    - 'addr:district'
+    - 'addr:subcounty'
+    - 'addr:parish'
+    - 'addr:settlement'
+    - 'addr:place'
+    - 'addr:block'
+    - amenity
+    - social_facility
+    - 'social_facility:for'
+    - name
+    - operator
+  where:
+    - 'amenity IN (''social_facility'',''community_centre'',''police'',''outreach'')'
+offices:
+  types:
+    - points
+  select: 
+  - 'addr:district'
+  - 'addr:subcounty'
+  - 'addr:parish'
+  - 'addr:settlement'
+  - 'addr:place'
+  - 'addr:block'
+  - name
+  - office
+  - operator
+  where:
+    - 'office IS NOT NULL'
+fuel_stations:
+  types:
+    - points
+  select:
+  - 'addr:district'
+  - 'addr:subcounty'
+  - 'addr:parish'
+  - 'addr:settlement'
+  - 'addr:place'
+  - 'addr:block'
+  - name
+  - amenity
+  - opening_hours
+  - operator
+  - fuel
+  where:
+    - 'amenity=''fuel'''
+places_of_worship:
+  types:
+    - points
+  select:   
+    - 'addr:district'
+    - 'addr:subcounty'
+    - 'addr:parish'
+    - amenity'
+    - religion
+    - 'addr:settlement'
+    - 'addr:village'
+    - 'addr:block'
+    - denomination
+    - building
+    - service_times
+  where:
+    - 'amenity IN (''place_of_worship'')'

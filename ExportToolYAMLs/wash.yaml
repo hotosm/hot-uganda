@@ -1,0 +1,66 @@
+planet_osm_line:
+  types:
+    - lines
+  select:
+    - amenity
+    - blockage
+    - building
+    - covered
+    - depth
+    - diameter
+    - landuse
+    - layer
+    - man_made
+    - name
+    - natural
+    - pump
+    - tunnel
+    - water
+    - waterway
+    - width
+  where:
+    - 'waterway IS NOT NULL OR water=''reservoir'' OR natural=''water'' OR landuse=''reservoir'' OR man_made IN (''water_tower'',''pumping_station'') OR building=''pumping_station'' OR amenity = ''water_point'''
+planet_osm_polygon:
+  types:
+    - polygons
+  select:
+    - amenity
+    - blockage
+    - building
+    - covered
+    - depth
+    - diameter
+    - landuse
+    - layer
+    - man_made
+    - name
+    - natural
+    - pump
+    - tunnel
+    - water
+    - waterway
+    - width
+  where:
+    - 'waterway IS NOT NULL OR water=''reservoir'' OR natural=''water'' OR landuse=''reservoir'' OR man_made IN (''water_tower'',''pumping_station'') OR building=''pumping_station'' OR amenity = ''water_point'''
+planet_osm_point:
+  types:
+    - points
+  select:
+    - amenity
+    - blockage
+    - building
+    - covered
+    - depth
+    - diameter
+    - landuse
+    - layer
+    - man_made
+    - name
+    - natural
+    - pump
+    - tunnel
+    - water
+    - waterway
+    - width
+  where:
+    - 'waterway IS NOT NULL OR water=''reservoir'' OR natural=''water'' OR landuse=''reservoir'' OR man_made IN (''water_tower'',''pumping_station'') OR building=''pumping_station'' OR amenity = ''water_point'''

@@ -1,0 +1,36 @@
+health_facilities:
+  types:
+    - points
+  select:
+    
+    - 'addr:district'
+    - 'addr:county'
+    - 'addr:subcounty'
+    - 'addr:parish'
+    - 'addr:village'
+    - 'addr:settlement'
+    - 'addr:place'
+    - 'addr:point'
+    - 'addr:block'
+    - name
+    - amenity
+    - start_date
+    - 'health_facility:type'
+    - 'health_person:type'
+    - operator
+    - 'operator:type'
+    - phone
+    - opening_hours
+    - emergency
+    - operational_status
+    - beds
+    - 'staff_count:doctors'
+    - 'staff_count:nurses'
+    - dispensing
+    - 'generator:source'
+    - water_supply
+    - toilets
+    - 'toilets:access'
+
+  where:
+    - 'amenity IN (''doctors'',''clinic'',''hospital'',''pharmacy'')'

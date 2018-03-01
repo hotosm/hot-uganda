@@ -1,0 +1,11 @@
+camps:
+  types:
+    - polygons
+  select:
+    - refugee
+    - admin_level
+    - boundary
+    - name
+    - type
+  where:
+    - boundary='refugee_camp'

@@ -1,0 +1,18 @@
+villages:
+  types:
+    - points
+  select:
+    - 'addr:district'
+    - 'addr:county'
+    - 'addr:subcounty'
+    - 'addr:parish'
+    - 'addr:settlement'
+    - 'addr:zone'
+    - 'addr:point'
+    - 'addr:block'
+    - name
+    - alt_name
+    - 'generator:source'
+    - place
+  where:
+    - place='village'
