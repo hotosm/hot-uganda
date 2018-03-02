@@ -18,60 +18,54 @@ mobile_money_agents:
     - opening_hours
   where:
     - 'amenity=''mobile_money_agent'''
-
 financial_services:
   types:
     - points
   select:   
-addr:district
-addr:subcounty
-addr:parish
-addr:settlement
-addr:place
-addr:block
-addr:village
-start_date
-name
-amenity
-operator
-opening_hours
-
+    - 'addr:district'
+    - 'addr:subcounty'
+    - 'addr:parish'
+    - 'addr:settlement'
+    - 'addr:place'
+    - 'addr:block'
+    - 'addr:village'
+    - start_date
+    - name
+    - amenity
+    - operator
+    - opening_hours
   where:
-    - 'amenity IN (bank, banking_agent, atm, credit_institution, microfinance_bank, microfinance, sacco, bureau_de_change, money_transfer)'
-
+    - 'amenity IN (''bank'', ''banking_agent'', ''atm'', ''credit_institution'', ''microfinance_bank'', ''microfinance'', ''sacco'', ''bureau_de_change'', ''money_transfer'')'
 shops:
   types:
     - points
   select:  
-addr:district
-addr:subcounty
-addr:parish
-addr:settlement
-addr:place
-addr:village
-addr:block
-start_date
-name
-opening_hours
-shop
-
+    - 'addr:district'
+    - 'addr:subcounty'
+    - 'addr:parish'
+    - 'addr:settlement'
+    - 'addr:place'
+    - 'addr:village'
+    - 'addr:block'
+    - start_date
+    - name
+    - opening_hours
+    - shop
   where:
-    - 'shop IN (alcohol, art, bakery, beauty, beverages, bicycle, books, butcher, car, car_parts, car_repair,charcoal, chemist, clothes, convenience, copyshop, cosmetics, electronics, food, furniture, greengrocer, hairdresser, houseware, jewelry, kiosk, mobile_phone, pastry, shoes, stationary, supermarket, tailor, yes)'
+    - 'shop IN (''alcohol'', ''art'', ''bakery'', ''beauty'', ''beverages'', ''bicycle'', ''books'', ''butcher'', ''car'', ''car_parts'', ''car_repair'',''charcoal'', ''chemist'', ''clothes'', ''convenience'', ''copyshop'', ''cosmetics'', ''electronics'', ''food'', ''furniture'', ''greengrocer'', ''hairdresser'', ''houseware'', ''jewelry'', ''kiosk'', ''mobile_phone'', ''pastry'', ''shoes'', ''stationary'', ''supermarket'', ''tailor'', ''yes'')'
 market_centres:
   types:
     - points
   select:
-  
-addr:district
-addr:subcounty
-addr:parish
-addr:settlement
-addr:place
-addr:block
-start_date
-amenity
-name
-opening_hours
-
+    - 'addr:district'
+    - 'addr:subcounty'
+    - 'addr:parish'
+    - 'addr:settlement'
+    - 'addr:place'
+    - 'addr:block'
+    - start_date
+    - amenity
+    - name
+    - opening_hours
   where:
-    - 'amenity=marketplace'
+    - 'amenity=''marketplace'''
