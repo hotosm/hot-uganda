@@ -2,7 +2,6 @@ health_facilities:
   types:
     - points
   select:
-    
     - 'addr:district'
     - 'addr:county'
     - 'addr:subcounty'
@@ -31,6 +30,5 @@ health_facilities:
     - water_supply
     - toilets
     - 'toilets:access'
-
   where:
     - 'amenity IN (''doctors'',''clinic'',''hospital'',''pharmacy'')'
