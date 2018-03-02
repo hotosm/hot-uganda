@@ -1,20 +1,11 @@
-planet_osm_point:
+education_facilities:
   types:
     - points
-  select:
-    - amenity
-    - capacity
-    - 'isced:level'
-    - name
-  where:
-    - 'amenity IN (''kindergarten'', ''school'', ''college'', ''university'',''language_school'') OR office=''educational_institution'''
-planet_osm_polygon:
-  types:
     - polygons
   select:
     - amenity
     - capacity
     - 'isced:level'
     - name
-  where:
-    - 'amenity IN (''kindergarten'', ''school'', ''college'', ''university'',''language_school'') OR office=''educational_institution'''
+  where: amenity IN ('kindergarten', 'school', 'college', 'university','language_school') OR office='educational_institution'
+ 
