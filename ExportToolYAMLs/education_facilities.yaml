@@ -1,20 +1,34 @@
-planet_osm_point:
+education_facilities:
   types:
     - points
   select:
-    - amenity
-    - capacity
-    - 'isced:level'
-    - name
+  - 'addr:district'
+  - 'addr:county'
+  - 'addr:subcounty'
+  - 'addr:parish'
+  - 'addr:village'
+  - 'addr:settlement'
+  - 'addr:zone'
+  - 'addr:point'
+  - 'addr:block'
+  - name
+  - start_date
+  - amenity
+  - 'isced:level'
+  - opening_hours
+  - phone
+  - operator
+  - 'operator:type'
+  - social_facility
+  - social_facility:for
+  - temporary
+  - toilets
+  - capacity
+  - 'staff_count:teachers'
+  - 'generator:source'
+  - water_supply
+  - drinking_water
+  - construction
+  - fee
   where:
-    - 'amenity IN (''kindergarten'', ''school'', ''college'', ''university'',''language_school'') OR office=''educational_institution'''
-planet_osm_polygon:
-  types:
-    - polygons
-  select:
-    - amenity
-    - capacity
-    - 'isced:level'
-    - name
-  where:
-    - 'amenity IN (''kindergarten'', ''school'', ''college'', ''university'',''language_school'') OR office=''educational_institution'''
+    - 'amenity IN (''school'',''kindergarten'',''university'',''college'',''childcare'')'
