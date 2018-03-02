@@ -13,8 +13,8 @@ centres_and_stations:
     - 'social_facility:for'
     - name
     - operator
-  where:
-    - 'amenity IN (''social_facility'',''community_centre'',''police'',''outreach'')'
+  where: amenity IN ('social_facility','community_centre','police','outreach')
+  
 offices:
   types:
     - points
@@ -28,8 +28,8 @@ offices:
   - name
   - office
   - operator
-  where:
-    - 'office IS NOT NULL'
+  where: office IS NOT NULL
+  
 fuel_stations:
   types:
     - points
@@ -45,8 +45,8 @@ fuel_stations:
   - opening_hours
   - operator
   - fuel
-  where:
-    - 'amenity=''fuel'''
+  where: amenity='fuel'
+  
 places_of_worship:
   types:
     - points
@@ -63,4 +63,4 @@ places_of_worship:
     - building
     - service_times
   where:
-    - 'amenity IN (''place_of_worship'')'
+    - amenity='place_of_worship'
