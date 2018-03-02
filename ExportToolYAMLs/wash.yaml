@@ -1,66 +1,51 @@
-planet_osm_line:
-  types:
-    - lines
-  select:
-    - amenity
-    - blockage
-    - building
-    - covered
-    - depth
-    - diameter
-    - landuse
-    - layer
-    - man_made
-    - name
-    - natural
-    - pump
-    - tunnel
-    - water
-    - waterway
-    - width
-  where:
-    - 'waterway IS NOT NULL OR water=''reservoir'' OR natural=''water'' OR landuse=''reservoir'' OR man_made IN (''water_tower'',''pumping_station'') OR building=''pumping_station'' OR amenity = ''water_point'''
-planet_osm_polygon:
-  types:
-    - polygons
-  select:
-    - amenity
-    - blockage
-    - building
-    - covered
-    - depth
-    - diameter
-    - landuse
-    - layer
-    - man_made
-    - name
-    - natural
-    - pump
-    - tunnel
-    - water
-    - waterway
-    - width
-  where:
-    - 'waterway IS NOT NULL OR water=''reservoir'' OR natural=''water'' OR landuse=''reservoir'' OR man_made IN (''water_tower'',''pumping_station'') OR building=''pumping_station'' OR amenity = ''water_point'''
-planet_osm_point:
+water:
   types:
     - points
-  select:
+  select:   
+    - 'addr:district'
+    - 'addr:county'
+    - 'addr:subcounty'
+    - 'addr:parish'
+    - 'addr:village'
+    - 'addr:settlement'
+    - 'addr:zone'
+    - 'addr:place'
+    - 'addr:point'
+    - 'addr:block'
+    - start_date
     - amenity
-    - blockage
-    - building
-    - covered
-    - depth
-    - diameter
-    - landuse
-    - layer
-    - man_made
     - name
+    - water_source
+    - emergency
+    - man_made
     - natural
+    - operational_status
+    - operator
+    - operator:type
     - pump
-    - tunnel
+    - fee
+    - lit
     - water
-    - waterway
-    - width
   where:
-    - 'waterway IS NOT NULL OR water=''reservoir'' OR natural=''water'' OR landuse=''reservoir'' OR man_made IN (''water_tower'',''pumping_station'') OR building=''pumping_station'' OR amenity = ''water_point'''
+    - 'amenity IN (''water_point'',''drinking water'',''drinking_water'') OR emergency IN (''water_tank'',''water tank'')  OR natural=''spring'' '
+sanitation:
+  types:
+    - points
+  select:   
+    - 'addr:district'
+    - 'addr:subcounty'
+    - 'addr:parish'
+    - 'addr:settlement'
+    - 'addr:place'
+    - 'addr:block'
+    - start_date
+    - amenity
+    - waste
+    - 'toilets:disposal'
+    - 'toilets:wheelchair'
+    - 'toilets:handwashing'
+    - 'toilets:access'
+    - name
+    - owner
+  where:
+    - 'amenity IN (''toilets'',''waste'',''recycling'')'
