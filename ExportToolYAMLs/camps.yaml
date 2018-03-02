@@ -1,4 +1,4 @@
-camps:
+refugee_camps:
   types:
     - polygons
   select:
@@ -7,5 +7,4 @@ camps:
     - boundary
     - name
     - type
-  where:
-    - boundary='refugee_camp'
+  where: boundary='refugee_camp'
