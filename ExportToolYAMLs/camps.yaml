@@ -15,5 +15,4 @@ camps:
     - landuse
     - place
     - 'name:en'
-  where:
-    - 'boundary=''refugee_camp'' OR (landuse=''residential'' and refugee=''yes'')'
+  where: boundary='refugee_camp' OR (landuse='residential' and refugee='yes')
