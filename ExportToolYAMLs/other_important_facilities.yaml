@@ -62,5 +62,4 @@ places_of_worship:
     - denomination
     - building
     - service_times
-  where:
-    - amenity='place_of_worship'
+  where: amenity='place_of_worship'
