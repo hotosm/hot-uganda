@@ -26,8 +26,7 @@ water:
     - fee
     - lit
     - water
-  where:
-    - 'amenity IN (''water_point'',''drinking water'',''drinking_water'') OR emergency IN (''water_tank'',''water tank'')  OR natural=''spring'' '
+  where: amenity IN ('water_point','drinking water','drinking_water') OR emergency IN ('water_tank','water tank')  OR natural='spring' 
 sanitation:
   types:
     - points
@@ -47,5 +46,4 @@ sanitation:
     - 'toilets:access'
     - name
     - owner
-  where:
-    - 'amenity IN (''toilets'',''waste'',''recycling'')'
+  where: amenity IN ('toilets','waste','recycling')
