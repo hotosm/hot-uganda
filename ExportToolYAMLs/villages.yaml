@@ -14,5 +14,4 @@ villages:
     - alt_name
     - 'generator:source'
     - place
-  where:
-    - place='village'
+  where: place='village'
