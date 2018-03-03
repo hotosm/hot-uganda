@@ -7,5 +7,13 @@ camps:
     - boundary
     - name
     - type
+    - operator 
+    - 'operator:type'
+    - population 
+    - capacity
+    - start_date
+    - landuse
+    - place
+    - 'name:en'
   where:
-    - boundary='refugee_camp'
+    - 'boundary=''refugee_camp'' OR (landuse=''residential'' and refugee=''yes'')'
