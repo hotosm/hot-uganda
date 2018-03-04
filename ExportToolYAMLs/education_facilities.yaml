@@ -28,6 +28,5 @@ education_facilities:
   - 'generator:source'
   - water_supply
   - drinking_water
-  - construction
   - fee
   where: amenity IN ('school','kindergarten','university','college','childcare')
