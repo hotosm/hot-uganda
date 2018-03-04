@@ -1,4 +1,4 @@
-camps:
+refugee_camps:
   types:
     - polygons
   select:
