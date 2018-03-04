@@ -26,7 +26,7 @@ water:
     - fee
     - lit
     - water
-  where: amenity IN ('water_point','drinking water','drinking_water') OR emergency IN ('water_tank','water tank')  OR natural='spring' 
+  where: amenity IN ('water_point','drinking_water') OR emergency='water_tank' OR natural='spring' 
 sanitation:
   types:
     - points
