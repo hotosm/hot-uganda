@@ -1,4 +1,7 @@
 centres_and_stations:
+  hdx:
+    tags: Uganda, camp facilities, osm, openstreetmap
+    caveats:
   types:
     - points
   select:   
@@ -16,6 +19,9 @@ centres_and_stations:
   where: amenity IN ('social_facility','community_centre','police','outreach')
   
 offices:
+  hdx:
+    tags: Uganda, offices, osm, openstreetmap
+    caveats:
   types:
     - points
   select: 
@@ -31,6 +37,9 @@ offices:
   where: office IS NOT NULL
   
 fuel_stations:
+  hdx:
+    tags: Uganda, fuel, osm, openstreetmap
+    caveats:
   types:
     - points
   select:
@@ -48,6 +57,9 @@ fuel_stations:
   where: amenity='fuel'
   
 places_of_worship:
+  hdx:
+    tags: Uganda, places of worship, osm, openstreetmap
+    caveats:
   types:
     - points
   select:   
