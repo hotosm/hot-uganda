@@ -1,4 +1,7 @@
 villages:
+  hdx:
+    tags: Uganda, villages, osm, openstreetmap
+    caveats:
   types:
     - points
   select:
