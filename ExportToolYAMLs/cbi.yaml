@@ -1,6 +1,6 @@
 mobile_money_agents:
   hdx:
-    tags: Uganda, CBI, mobile money, osm, openstreetmap
+    tags: Uganda refugee response, CBI, mobile money, osm, openstreetmap
     caveats:
   types:
     - points
@@ -23,7 +23,7 @@ mobile_money_agents:
 
 financial_services:
   hdx:
-    tags: Uganda, CBI, financial services, osm, openstreetmap
+    tags: Uganda refugee response, CBI, financial services, osm, openstreetmap
     caveats:
   types:
     - points
@@ -44,7 +44,7 @@ financial_services:
   
 shops:
   hdx:
-    tags: Uganda, CBI, shops, osm, openstreetmap
+    tags: Uganda refugee response, CBI, shops, osm, openstreetmap
     caveats:
   types:
     - points
@@ -64,7 +64,7 @@ shops:
 
 market_centres:
   hdx:
-    tags: Uganda, CBI, markets, osm, openstreetmap
+    tags: Uganda refugee response, CBI, markets, osm, openstreetmap
     caveats:
   types:
     - points
