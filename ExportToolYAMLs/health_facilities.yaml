@@ -1,4 +1,7 @@
 health_facilities:
+  hdx:
+    tags: Uganda, health, osm, openstreetmap
+    caveats:
   types:
     - points
   select:
