@@ -1,6 +1,6 @@
 education_facilities:
   hdx:
-    tags: Uganda, education, osm, openstreetmap
+    tags: Uganda refugee response, education, osm, openstreetmap
     caveats:
   types:
     - points
