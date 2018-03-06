@@ -1,6 +1,6 @@
 refugee_camps:
   hdx:
-    tags: refugee camps, osm, openstreetmap
+    tags: Uganda refugee response, refugee camps, osm, openstreetmap
     caveats:
   types:
     - polygons
