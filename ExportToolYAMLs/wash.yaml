@@ -1,4 +1,7 @@
 water:
+  hdx:
+    tags: Uganda, water points, osm, openstreetmap
+    caveats:
   types:
     - points
   select:   
@@ -27,7 +30,11 @@ water:
     - lit
     - water
   where: amenity IN ('water_point','drinking_water') OR emergency='water_tank' OR natural='spring' 
+
 sanitation:
+  hdx:
+    tags: Uganda, sanitation, osm, openstreetmap
+    caveats:
   types:
     - points
   select:   
@@ -45,5 +52,11 @@ sanitation:
     - 'toilets:handwashing'
     - 'toilets:access'
     - name
-    - owner
+    - male
+    - female
+    - operational_status
+    - operator
+    - operator:type
+    - fee
+    - lit
   where: amenity IN ('toilets','waste','recycling')
