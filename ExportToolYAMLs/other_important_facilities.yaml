@@ -1,6 +1,6 @@
 centres_and_stations:
   hdx:
-    tags: Uganda, camp facilities, osm, openstreetmap
+    tags: Uganda refugee response, camp facilities, osm, openstreetmap
     caveats:
   types:
     - points
@@ -20,7 +20,7 @@ centres_and_stations:
   
 offices:
   hdx:
-    tags: Uganda, offices, osm, openstreetmap
+    tags: Uganda refugee response, offices, osm, openstreetmap
     caveats:
   types:
     - points
@@ -38,7 +38,7 @@ offices:
   
 fuel_stations:
   hdx:
-    tags: Uganda, fuel, osm, openstreetmap
+    tags: Uganda refugee response, fuel, osm, openstreetmap
     caveats:
   types:
     - points
@@ -58,7 +58,7 @@ fuel_stations:
   
 places_of_worship:
   hdx:
-    tags: Uganda, places of worship, osm, openstreetmap
+    tags: Uganda refugee response, places of worship, osm, openstreetmap
     caveats:
   types:
     - points
