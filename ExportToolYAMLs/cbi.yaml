@@ -1,4 +1,7 @@
 mobile_money_agents:
+  hdx:
+    tags: Uganda, CBI, mobile money, osm, openstreetmap
+    caveats:
   types:
     - points
   select: 
@@ -17,7 +20,11 @@ mobile_money_agents:
     - name
     - opening_hours
   where: amenity='mobile_money_agent'
+
 financial_services:
+  hdx:
+    tags: Uganda, CBI, financial services, osm, openstreetmap
+    caveats:
   types:
     - points
   select:   
@@ -34,7 +41,11 @@ financial_services:
     - operator
     - opening_hours
   where: amenity IN ('bank', 'banking_agent', 'atm', 'credit_institution', 'microfinance_bank', 'microfinance', 'sacco', 'bureau_de_change', 'money_transfer')
+  
 shops:
+  hdx:
+    tags: Uganda, CBI, shops, osm, openstreetmap
+    caveats:
   types:
     - points
   select:  
@@ -50,7 +61,11 @@ shops:
     - opening_hours
     - shop
   where: shop IN ('alcohol', 'art', 'bakery', 'beauty', 'beverages', 'bicycle', 'books', 'butcher', 'car', 'car_parts', 'car_repair','charcoal', 'chemist', 'clothes', 'convenience', 'copyshop', 'cosmetics', 'electronics', 'food', 'furniture', 'greengrocer', 'hairdresser', 'houseware', 'jewelry', 'kiosk', 'mobile_phone', 'pastry', 'shoes', 'stationary', 'supermarket', 'tailor', 'yes')
+
 market_centres:
+  hdx:
+    tags: Uganda, CBI, markets, osm, openstreetmap
+    caveats:
   types:
     - points
   select:
