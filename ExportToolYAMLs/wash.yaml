@@ -1,6 +1,6 @@
 water:
   hdx:
-    tags: Uganda, water points, osm, openstreetmap
+    tags: Uganda refugee response, water points, osm, openstreetmap
     caveats:
   types:
     - points
@@ -33,7 +33,7 @@ water:
 
 sanitation:
   hdx:
-    tags: Uganda, sanitation, osm, openstreetmap
+    tags: Uganda refugee response, sanitation, osm, openstreetmap
     caveats:
   types:
     - points
