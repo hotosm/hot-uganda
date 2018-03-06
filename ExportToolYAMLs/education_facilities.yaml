@@ -1,4 +1,7 @@
 education_facilities:
+  hdx:
+    tags: Uganda, education, osm, openstreetmap
+    caveats:
   types:
     - points
   select:
