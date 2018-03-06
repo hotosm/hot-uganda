@@ -1,6 +1,6 @@
 health_facilities:
   hdx:
-    tags: health, osm, openstreetmap
+    tags: Uganda refugee response, health, osm, openstreetmap
     caveats:
   types:
     - points
