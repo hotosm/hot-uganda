@@ -1,6 +1,6 @@
-water:
+water_and_sanitation:
   hdx:
-    tags: Uganda refugee response, water points, osm, openstreetmap
+    tags: Uganda refugee response, water points, sanitation points, osm, openstreetmap
     caveats:
   types:
     - points
@@ -29,34 +29,15 @@ water:
     - fee
     - lit
     - water
-  where: amenity IN ('water_point','drinking_water') OR emergency='water_tank' OR natural='spring' 
-
-sanitation:
-  hdx:
-    tags: Uganda refugee response, sanitation, osm, openstreetmap
-    caveats:
-  types:
-    - points
-  select:   
-    - 'addr:district'
-    - 'addr:subcounty'
-    - 'addr:parish'
-    - 'addr:settlement'
-    - 'addr:place'
-    - 'addr:block'
-    - start_date
-    - amenity
     - waste
     - 'toilets:disposal'
     - 'toilets:wheelchair'
     - 'toilets:handwashing'
     - 'toilets:access'
-    - name
     - male
     - female
-    - operational_status
-    - operator
-    - operator:type
-    - fee
-    - lit
-  where: amenity IN ('toilets','waste','recycling')
+  where: amenity IN ('water_point', 'drinking_water', 'toilets', 'waste', 'recycling') OR emergency='water_tank' OR natural='spring' 
+
+
+
+
