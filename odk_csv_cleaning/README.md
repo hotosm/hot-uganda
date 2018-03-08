@@ -1,6 +1,6 @@
 # Clean Form CSVs
 
-This script is meant to aid in the cleaning and merging of data from ODK csv forms. 
+This script is meant to aid in the cleaning and merging of data from ODK-Form CSVs. 
 
 clean_form_csvs.py handles one argument (after [file]) at a time, with an option to add -n/--name for a custom output name of a given file.
 
