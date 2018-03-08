@@ -35,8 +35,8 @@ You can make the script name executable by running ```chmod +x clean_form_csvs.p
 
 #### Directions
 
-Start by prepping each CSV, with the -p command, this properly formats the CSV for use in excel or elsewhere.
+Start by prepping each CSV, with the ```-p``` command, this properly formats the CSV for use in excel or elsewhere.
 
-In order for each CSV to be opened in QGIS, use the -f or -bf (for batch fix lat/lon), in order to fix the latitude and longitude columns to regular standards.
+In order for each CSV to be opened in QGIS, use the ```-f``` or ```-bf``` (for batch fix lat/lon), in order to fix the latitude and longitude columns to regular standards.
 
 For more help, run ```python clean_form_csvs.py --help```
