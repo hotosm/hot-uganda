@@ -1,6 +1,8 @@
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 
+#This code is licensed under the 3-Clause BSD License.
+
 #Copyright (c) 2018 Apple Inc. All rights reserved.
 
 #Redistribution and use in source and binary forms, 
