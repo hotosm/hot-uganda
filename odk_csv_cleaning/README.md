@@ -29,7 +29,7 @@ clean_form_csvs.py handles one argument (after [file]) at a time, with an option
 
 You can make the script name executable by running ```chmod +x clean_form_csvs.py``` and executing it using ```./clean_form_csvs.py```
 
-#### Running the script with chmod:
+#### Running the script without making it name executable:
 
 ```python clean_form_csvs.py <some argument>``` to call the script into action.
 
