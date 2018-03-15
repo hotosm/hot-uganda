@@ -41,17 +41,17 @@ You can make the script name executable by running ```chmod +x clean_form_csvs.p
 
 ```python clean_form_csvs.py <some argument>``` to call the script into action.
 
-Single File Example 01: ```python clean_form_csvs.py [file] -p```
+*Single File Example 01:* ```python clean_form_csvs.py [pathtocsv] -p```
 
-Single File Example 02: ```python clean_form_csvs.py [file] -f```
+*Single File Example 02:* ```python clean_form_csvs.py [pathtocsv] -f```
 
-Multiple File Example 01: ```python clean_form_csvs.py [/directoryofcsvs] -p```
+*Multiple File Example 01:* ```python clean_form_csvs.py [/directoryofcsvs] -p```
 
-Multiple File Example 02: ```python clean_form_csvs.py [/directoryofcsvs] -bm -n```
+*Multiple File Example 02:* ```python clean_form_csvs.py [/directoryofcsvs] -bm -n```
 
 #### Directions
 
-Start by prepping each CSV (or directory of csvs), with the ```-p``` command (providing of course a path to the file, or directory of files). This properly formats the CSV(s) for use in excel or elsewhere.
+Start by prepping each CSV (or directory of csvs), with the ```-p``` command (providing a path to the file, or directory of files). This properly formats the CSV(s) for use in excel or elsewhere.
 
 Once CSVs are prepped for use and readability, proceed to address other formatting/processing concerns with the host of commands at your disposal.
 
