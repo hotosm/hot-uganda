@@ -2,12 +2,20 @@
 
 This script is meant to aid in the cleaning and merging of data from ODK-Form CSVs. 
 
-clean_form_csvs.py handles one argument (after [file]) at a time, with an option to add -n/--name for a custom output name of a given file.
+clean_form_csvs.py handles one argument (after [file]) at a time, with an option to add -n|--name for a custom output name of a given file.
+
+You can run each argument individually on a given file, or as part of a batch process on a directory of files.
 
 ## Dependencies
 
 * python2.7
 * pandas
+
+### Overview
+
+The instructions found below go into detail on how to install python (2.7), pips (if missing) and pandas (a required module).
+
+If you have a working version of python27 on your PATH, you can run the script one time (calling --help) to initiate a pandas install using pip. The script will then install the pandas module via pip for you, without you having to do any additional steps. 
 
 #### Instructions for installing python: 
 
@@ -23,7 +31,7 @@ clean_form_csvs.py handles one argument (after [file]) at a time, with an option
 
 * https://pandas.pydata.org/pandas-docs/stable/install.html#installing-from-pypi
 
-## Steps
+## Steps to Run
 
 #### Making the script executable:
 
@@ -33,15 +41,25 @@ You can make the script name executable by running ```chmod +x clean_form_csvs.p
 
 ```python clean_form_csvs.py <some argument>``` to call the script into action.
 
+Single File Example 01: ```python clean_form_csvs.py [file] -p```
+
+Single File Example 02: ```python clean_form_csvs.py [file] -f```
+
+Multiple File Example 01: ```python clean_form_csvs.py [/directoryofcsvs] -p```
+
+Multiple File Example 02: ```python clean_form_csvs.py [/directoryofcsvs] -bm -n```
+
 #### Directions
 
-Start by prepping each CSV (or a directory of csvs), with the ```-p``` command. This properly formats the CSV for use in excel or elsewhere.
+Start by prepping each CSV (or directory of csvs), with the ```-p``` command (providing of course a path to the file, or directory of files). This properly formats the CSV(s) for use in excel or elsewhere.
 
-In order for each CSV to be opened in QGIS, use the ```-f``` (for fix lat/lon) or ```-bf``` (for batch fix lat/lon), in order to fix the latitude and longitude columns to regular standards.
+Once CSVs are prepped for use and readability, proceed to address other formatting/processing concerns with the host of commands at your disposal.
 
 For more help, run ```python clean_form_csvs.py --help```
 
 #### Arguments
+
+*Some functions of this script rely on existing form architecture. Pending updates to forms used in the field, some of the functions below will need additional updating, or even removal. Others (such as batch merge), will remain useful in spite of form column changes.*
 
 **positional arguments:**
   * ```file```                  Provide a csv file, or path to directory of csv's for
