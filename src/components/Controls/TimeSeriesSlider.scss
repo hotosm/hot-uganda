@@ -1,0 +1,9 @@
+exports = module.exports = require("../../../../node_modules/css-loader/lib/css-base.js")();
+exports.push([module.id, ".series {\n  background: #fff;\n  position: absolute;\n  z-index: 1004;\n  border-radius: 5px;\n  width: 150px;\n  border: 2px solid rgba(0, 0, 0, 0.15);\n  padding: 5px;\n  right: 50px;\n  top: 8px; }\n  .series label {\n    color: #000;\n    font-size: 14px; }\n", ""]);
+
+
+//////////////////
+// WEBPACK FOOTER
+// ./~/css-loader!./~/sass-loader/lib/loader.js!./src/components/Controls/TimeSeriesSlider/TimeSeriesSlider.scss
+// module id = 142
+// module chunks = 0

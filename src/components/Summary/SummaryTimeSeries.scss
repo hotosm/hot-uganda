@@ -1,0 +1,9 @@
+exports = module.exports = require("../../../node_modules/css-loader/lib/css-base.js")();
+exports.push([module.id, ".chart-wrapper {\n  padding: 0 18px; }\n\n.timeseries-metrics-wrapper {\n  display: flex;\n  flex-flow: row wrap;\n  align-items: stretch;\n  border-top: 1px solid #ccc; }\n  .timeseries-metrics-wrapper > div {\n    flex-grow: 1;\n    flex-basis: 33%;\n    border-right: 1px solid #ccc;\n    border-bottom: 1px solid #ccc;\n    padding-bottom: 16px; }\n    .timeseries-metrics-wrapper > div .metric-label {\n      display: block;\n      margin-bottom: 0;\n      padding: 21px 0 0 24px;\n      color: #666;\n      font-size: 12px; }\n    .timeseries-metrics-wrapper > div .metric-number {\n      display: block;\n      margin: 0 0 4px 24px;\n      font-size: 24px;\n      color: #333;\n      font-weight: bold; }\n    .timeseries-metrics-wrapper > div table {\n      display: block;\n      margin: 0 24px;\n      font-size: 11px;\n      font-weight: 100;\n      color: #666; }\n      .timeseries-metrics-wrapper > div table td {\n        padding-right: 30px;\n        padding-bottom: 6px;\n        vertical-align: top; }\n        .timeseries-metrics-wrapper > div table td:nth-child(2) {\n          padding-right: 0;\n          text-align: right; }\n", ""]);
+
+
+//////////////////
+// WEBPACK FOOTER
+// ./~/css-loader!./~/sass-loader/lib/loader.js!./src/components/Summary/SummaryTimeSeries.scss
+// module id = 155
+// module chunks = 0

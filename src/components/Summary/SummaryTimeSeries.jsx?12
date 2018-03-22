@@ -1,0 +1,274 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _LineChart = require('./../Charts/LineChart');
+
+var _LineChart2 = _interopRequireDefault(_LineChart);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+require('./SummaryTimeSeries.scss');
+
+var SummaryTimeSeries = function (_React$Component) {
+  _inherits(SummaryTimeSeries, _React$Component);
+
+  _createClass(SummaryTimeSeries, null, [{
+    key: 'aggregateSubtotals',
+    value: function aggregateSubtotals(prop, currentSectorData) {
+      var propIndexFromEnd = prop === 'actual' ? 3 : 4;
+      var metrics = currentSectorData.metrics;
+
+      var metricValues = [];
+
+      var subtotals = [];
+
+      metrics.forEach(function (metricProp) {
+        if (currentSectorData[metricProp]) {
+          metricValues = currentSectorData[metricProp].values;
+
+          subtotals.push({
+            label: metricProp,
+            value: metricValues[metricValues.length - propIndexFromEnd]
+          });
+        }
+      });
+
+      return subtotals;
+    }
+  }, {
+    key: 'buildBreakdownRows',
+    value: function buildBreakdownRows(breakdown) {
+      return breakdown.map(function (metric) {
+        return _react2.default.createElement(
+          'tr',
+          null,
+          _react2.default.createElement(
+            'td',
+            null,
+            metric.label
+          ),
+          _react2.default.createElement(
+            'td',
+            null,
+            Number(metric.value).toLocaleString()
+          )
+        );
+      });
+    }
+  }, {
+    key: 'getTimeseriesData',
+    value: function getTimeseriesData(currentSector, SectorData, temporalIndex) {
+      var currentDataDate = SectorData[temporalIndex].dataDate;
+      var seriesArr = [];
+
+      var i = SectorData.length;
+      var datum = {};
+      var sectorData = null;
+      var sectorValues = null;
+
+      while (i) {
+        sectorData = SectorData[i - 1];
+        if (sectorData[currentSector]) {
+          sectorValues = sectorData[currentSector].values;
+
+          datum = {
+            x: sectorData.dataDate,
+            y: sectorValues[sectorValues.length - 3]
+          };
+
+          if (sectorData.dataDate === currentDataDate) datum.marker = { radius: 7 };
+          seriesArr.push(datum);
+        }
+        i -= 1;
+      }
+
+      // return series array for chart.options.series
+      return [{
+        name: 'Total (Actual)',
+        data: seriesArr
+      }];
+    }
+  }]);
+
+  function SummaryTimeSeries(props) {
+    _classCallCheck(this, SummaryTimeSeries);
+
+    var _this = _possibleConstructorReturn(this, (SummaryTimeSeries.__proto__ || Object.getPrototypeOf(SummaryTimeSeries)).call(this, props));
+
+    var _this$props = _this.props,
+        SectorData = _this$props.SectorData,
+        temporalIndex = _this$props.temporalIndex,
+        currentSector = _this$props.currentSector;
+
+    var currentSectorData = SectorData[temporalIndex][currentSector];
+    var values = currentSectorData.values;
+
+    var tsData = SummaryTimeSeries.getTimeseriesData(currentSector, SectorData, temporalIndex);
+
+    _this.state = {
+      totalProgress: {
+        target: values[values.length - 2],
+        actual: values[values.length - 3],
+        planned: values[values.length - 4]
+      },
+
+      temporalIndex: temporalIndex,
+      timeseriesData: tsData,
+
+      actualsBreakdown: SummaryTimeSeries.aggregateSubtotals('actual', currentSectorData),
+      plannedBreakdown: SummaryTimeSeries.aggregateSubtotals('planned', currentSectorData)
+    };
+    return _this;
+  }
+
+  _createClass(SummaryTimeSeries, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var SectorData = nextProps.SectorData,
+          temporalIndex = nextProps.temporalIndex,
+          currentSector = nextProps.currentSector;
+
+      var currentSectorData = SectorData[temporalIndex][currentSector];
+      var values = currentSectorData.values;
+
+      var tsData = SummaryTimeSeries.getTimeseriesData(currentSector, SectorData, temporalIndex);
+
+      this.setState({
+        totalProgress: {
+          target: values[values.length - 2],
+          actual: values[values.length - 3],
+          planned: values[values.length - 4]
+        },
+
+        temporalIndex: temporalIndex,
+        timeseriesData: tsData,
+
+        actualsBreakdown: SummaryTimeSeries.aggregateSubtotals('actual', currentSectorData),
+        plannedBreakdown: SummaryTimeSeries.aggregateSubtotals('planned', currentSectorData)
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _state$totalProgress = this.state.totalProgress,
+          target = _state$totalProgress.target,
+          actual = _state$totalProgress.actual,
+          planned = _state$totalProgress.planned;
+      var _state = this.state,
+          timeseriesData = _state.timeseriesData,
+          plannedBreakdown = _state.plannedBreakdown,
+          actualsBreakdown = _state.actualsBreakdown;
+
+
+      var PlannedRows = SummaryTimeSeries.buildBreakdownRows(plannedBreakdown);
+      var ActualsRows = SummaryTimeSeries.buildBreakdownRows(actualsBreakdown);
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'summary-card timeseries' },
+        _react2.default.createElement(
+          'h5',
+          null,
+          'Total People Served'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'chart-wrapper' },
+          _react2.default.createElement(_LineChart2.default, {
+            series: { series: timeseriesData },
+            target: target
+          })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'timeseries-metrics-wrapper clearfix' },
+          _react2.default.createElement(
+            'div',
+            { className: 'dfid-target' },
+            _react2.default.createElement(
+              'span',
+              { className: 'metric-label' },
+              'DFID Target'
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'metric-number' },
+              Number(target).toLocaleString()
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'total-planned' },
+            _react2.default.createElement(
+              'span',
+              { className: 'metric-label' },
+              'Total (Planned)'
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'metric-number' },
+              Number(planned).toLocaleString()
+            ),
+            _react2.default.createElement(
+              'table',
+              null,
+              PlannedRows
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'total-actual' },
+            _react2.default.createElement(
+              'span',
+              { className: 'metric-label' },
+              'Total (Actual)'
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'metric-number' },
+              Number(actual).toLocaleString()
+            ),
+            _react2.default.createElement(
+              'table',
+              { className: 'clearfix' },
+              ActualsRows
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return SummaryTimeSeries;
+}(_react2.default.Component);
+
+SummaryTimeSeries.propTypes = {
+  SectorData: _propTypes2.default.objectOf(_propTypes2.default.any).isRequired,
+  temporalIndex: _propTypes2.default.number.isRequired,
+  currentSector: _propTypes2.default.string.isRequired
+};
+
+exports.default = SummaryTimeSeries;
+
+
+// WEBPACK FOOTER //
+// ./~/babel-loader/lib!./src/components/Summary/SummaryTimeSeries.jsx

@@ -1,0 +1,9 @@
+exports = module.exports = require("../../../node_modules/css-loader/lib/css-base.js")();
+exports.push([module.id, "#app {\n  font-family: 'Montserrat', sans-serif; }\n", ""]);
+
+
+//////////////////
+// WEBPACK FOOTER
+// ./~/css-loader!./~/sass-loader/lib/loader.js!./src/components/App/App.scss
+// module id = 137
+// module chunks = 0

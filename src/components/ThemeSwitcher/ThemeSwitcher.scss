@@ -1,0 +1,9 @@
+exports = module.exports = require("../../../node_modules/css-loader/lib/css-base.js")();
+exports.push([module.id, ".wrap {\n  margin: 0 auto;\n  padding: 1.5rem;\n  max-width: 20rem;\n  z-index: 10000;\n  position: absolute;\n  right: 24px; }\n  .wrap label.button {\n    background: #000;\n    padding: 0.7rem 3rem;\n    color: #fff;\n    border-radius: 0.45rem;\n    cursor: pointer;\n    font-family: sans-serif; }\n    .wrap label.button input[type=\"checkbox\"] {\n      position: absolute;\n      left: -9999px; }\n  .wrap .btn-group p {\n    position: relative;\n    right: 2px; }\n  .wrap .btn-group button {\n    height: 18px;\n    width: 18px;\n    background-color: transparent;\n    border: none;\n    padding: 0; }\n    .wrap .btn-group button.light {\n      color: #1d1c1c; }\n    .wrap .btn-group button.dark {\n      color: #eee; }\n", ""]);
+
+
+//////////////////
+// WEBPACK FOOTER
+// ./~/css-loader!./~/sass-loader/lib/loader.js!./src/components/ThemeSwitcher/ThemeSwitcher.scss
+// module id = 156
+// module chunks = 0

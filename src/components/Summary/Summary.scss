@@ -1,0 +1,9 @@
+exports = module.exports = require("../../../node_modules/css-loader/lib/css-base.js")();
+exports.push([module.id, ".summary-wrapper {\n  background-color: #f7f7f7;\n  margin-left: 80px;\n  padding: 22px 33px;\n  min-height: 100vh; }\n  .summary-wrapper > * {\n    max-width: 900px; }\n\n.summary-header {\n  border-bottom: 2px solid #cdcdcd; }\n  .summary-header h3 {\n    color: #e74624;\n    margin: 0 0 15px;\n    display: inline-block; }\n  .summary-header span {\n    color: #e74624;\n    font-size: 18px;\n    text-transform: uppercase;\n    padding-left: 14px; }\n  .summary-header .year-select {\n    float: right;\n    border: none;\n    font-size: 17px;\n    margin-top: 4px;\n    color: #333; }\n\n.summary-card {\n  border-radius: 4px;\n  background-color: #fff;\n  margin-bottom: 28px;\n  box-shadow: 0 0 7px rgba(0, 0, 0, 0.4); }\n  .summary-card h5 {\n    color: #e74624;\n    font-size: 16px;\n    margin: 0 24px;\n    padding: 18px 0; }\n  @media print {\n    .summary-card {\n      border: 1px solid #ccc; } }\n", ""]);
+
+
+//////////////////
+// WEBPACK FOOTER
+// ./~/css-loader!./~/sass-loader/lib/loader.js!./src/components/Summary/Summary.scss
+// module id = 152
+// module chunks = 0

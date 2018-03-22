@@ -1,0 +1,9 @@
+exports = module.exports = require("../../../node_modules/css-loader/lib/css-base.js")();
+exports.push([module.id, ".partner-performance-wrapper {\n  display: flex;\n  flex-direction: row;\n  padding: 0 24px; }\n  .partner-performance-wrapper p {\n    margin-top: 18px;\n    color: #666;\n    font-size: 12px;\n    font-style: italic; }\n  .partner-performance-wrapper .actual-planned {\n    flex: 1 1 60%;\n    max-width: 60%; }\n  .partner-performance-wrapper .partner-percent {\n    flex: 1 1 40%;\n    max-width: 40%;\n    text-align: center; }\n  @media screen and (max-width: 800px) {\n    .partner-performance-wrapper {\n      flex-wrap: wrap; }\n      .partner-performance-wrapper .actual-planned,\n      .partner-performance-wrapper .partner-percent {\n        flex-basis: 100%;\n        max-width: 100%; } }\n", ""]);
+
+
+//////////////////
+// WEBPACK FOOTER
+// ./~/css-loader!./~/sass-loader/lib/loader.js!./src/components/Summary/PartnerPerformance.scss
+// module id = 150
+// module chunks = 0
