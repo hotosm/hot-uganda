@@ -43,7 +43,6 @@ try:
 	import io
 	import pandas as pd
 	from pandas.io.parsers import read_csv
-	import copy
 
 ## Install Pandas if it is not already installed
 
