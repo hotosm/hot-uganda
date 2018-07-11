@@ -1,0 +1,31 @@
+KoboMapper is a plugin for JOSM that is used to enable datacleaning for Kobo geotraces
+
+
+
+http://docs.geoserver.org/latest/en/user/extensions/importer/rest_reference.html
+
+
+http://docs.geoserver.org/latest/en/api/#/1.0.0/datastores.yaml
+
+https://www.safaribooksonline.com/library/view/mastering-geoserver/9781783287697/ch09s02.html   wps spatial analysis
+https://www.safaribooksonline.com/library/view/geoserver-cookbook/9781783289615/ch04s02.html
+
+https://www.safaribooksonline.com/library/view/mastering-geoserver/9781783287697/ch09s03.html
+
+https://www.safaribooksonline.com/library/view/mastering-geoserver/9781783287697/ch09s03.html
+
+
+
+
+https://www.safaribooksonline.com/library/view/mastering-geoserver/9781783287697/ch09s06.html     GeoScript
+
+
+
+https://www.safaribooksonline.com/library/view/geoserver-cookbook/9781783289615/ch01.html   coql
+
+
+
+date '2001-09-28' + integer '7'
+
+
+current_date
