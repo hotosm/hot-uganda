@@ -1,0 +1,1 @@
+5 * * * *  /home/omk-admin/scripts/Python-3.6.0/python /home/omk-admin/scripts/GeoserverImport.py

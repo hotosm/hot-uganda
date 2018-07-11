@@ -1,0 +1,92 @@
+
+  var authToken="";
+  var url="";
+
+  function arrayToRing (arr) {
+    var parts = [ ], ret = '';
+
+    for (var i = 0; i < arr.length; i++) {
+      var t = arr[i].slice(0,2);
+      t.reverse();
+      parts.push(t.join(' '));
+    }
+
+    ret += '(' + parts.join(', ') + ')';
+
+    return ret;
+
+  }
+  function toWKT(str){
+    try{
+      
+    
+     var lines = str.split(";");
+     var firstLine = lines[0].split(" ");
+     if (firstLine.length === 4)
+        {
+          var split=lines.map(function(x){return x.trim().split(" ")});
+          var pt = arrayToRing(split);
+          Logger.log(pt);
+          if(lines.length === 1)
+          {
+            return 'POINT'+pt;
+          }
+          else{
+             return 'LINESTRING'+pt;
+         
+          }}
+    
+    else{
+       return false; 
+    }
+    }
+    catch (e)
+    {
+      return false;
+    }
+    
+      
+  }
+  
+  
+
+function fetchData() {
+  var headers={'Authorization': 'Token '+authToken};
+  var fResponse = UrlFetchApp.fetch(url, {'muteHttpExceptions': true,'headers':headers});
+  var a = fResponse.getContentText();
+  a=a.replace(/(?=["'])(?:"[^"\\]*(?:\\[\s\S][^"\\]*)*"|'[^'\\]\r\n(?:\\[\s\S][^'\\]\r\n)*')/g, '\\r\\n');
+   var csvData = Utilities.parseCsv(a, ",");
+   var sheet = SpreadsheetApp.getActiveSheet();
+
+   
+    sheet.clearContents().clearFormats();
+    sheet.getRange(1, 1, csvData.length, csvData[0].length).setValues(csvData);
+  
+     var lastRow = sheet.getLastRow();
+      var lastColumn = sheet.getLastColumn();
+     var range  = sheet.getRange(2/*start row*/, 2/* start Column */,
+                             lastRow-1/* num of rows */,lastColumn /* numCols */);
+        var data = range.getValues();
+       var columns=range.getNumColumns();
+       var rows=range.getNumRows();
+       
+      range.offset(0,0,rows, columns)
+       .setValues( data.map (function (row) {
+          for (var column=1; column < columns; column++) {
+            
+           
+               var t = toWKT(row[column]);
+            
+       
+            if (t !== false) {
+              Logger.log(t);
+               row[column] = t;
+              
+            }}
+            return row;
+          }
+         
+       ));
+  
+  
+}
