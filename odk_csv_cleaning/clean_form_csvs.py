@@ -132,7 +132,9 @@ elif args.file and args.batchfixlatlon:
 				'_community_geopoint_latitude' : 'latitude',
 				'_community_geopoint_longitude' : 'longitude',
 				'_wash_facility_point_latitude' : 'latitude',
-				'_wash_facility_point_longitude' : 'longitude'
+				'_wash_facility_point_longitude' : 'longitude',
+				'_water_facility_point_latitude': 'latitude',
+				'_water_facility_point_longitude': 'longitude',
 				}
 				edited_data = data.rename(columns = old_names)
 				edited_data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
@@ -160,7 +162,9 @@ elif args.file and args.batchfixlatlon:
 				'_community_geopoint_latitude' : 'latitude',
 				'_community_geopoint_longitude' : 'longitude',
 				'_wash_facility_point_latitude' : 'latitude',
-				'_wash_facility_point_longitude' : 'longitude'
+				'_wash_facility_point_longitude' : 'longitude',
+				'_water_facility_point_latitude': 'latitude',
+				'_water_facility_point_longitude': 'longitude',
 				}
 				edited_data = data.rename(columns = old_names)
 				edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
@@ -479,7 +483,9 @@ elif args.file and args.fixlatlon and args.name:
 		'_community_geopoint_latitude' : 'latitude',
 		'_community_geopoint_longitude' : 'longitude',
 		'_wash_facility_point_latitude' : 'latitude',
-		'_wash_facility_point_longitude' : 'longitude'
+		'_wash_facility_point_longitude' : 'longitude',
+		'_water_facility_point_latitude': 'latitude',
+		'_water_facility_point_longitude': 'longitude',
 		}
 		edited_data = data.rename(columns = old_names)
 		edited_data.to_csv(newName+'.csv', quoting=csv.QUOTE_ALL, index=False)
@@ -508,7 +514,9 @@ elif args.file and args.fixlatlon:
 			'_community_geopoint_latitude' : 'latitude',
 			'_community_geopoint_longitude' : 'longitude',
 			'_wash_facility_point_latitude' : 'latitude',
-			'_wash_facility_point_longitude' : 'longitude'
+			'_wash_facility_point_longitude' : 'longitude',
+			'_water_facility_point_latitude': 'latitude',
+			'_water_facility_point_longitude': 'longitude',
 			}
 			edited_data = data.rename(columns = old_names)
 			edited_data.to_csv(filename+'_editedlatlon.csv', quoting=csv.QUOTE_ALL, index=False)
@@ -533,7 +541,9 @@ elif args.file and args.fixlatlon:
 			'_community_geopoint_latitude' : 'latitude',
 			'_community_geopoint_longitude' : 'longitude',
 			'_wash_facility_point_latitude' : 'latitude',
-			'_wash_facility_point_longitude' : 'longitude'
+			'_wash_facility_point_longitude' : 'longitude',
+			'_water_facility_point_latitude': 'latitude',
+			'_water_facility_point_longitude': 'longitude',
 			}
 			edited_data = data.rename(columns = old_names)
 			edited_data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
@@ -673,6 +683,9 @@ elif args.file and args.batchremoveosmfield:
 				data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
 				data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
 				data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
+				data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+				data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+				data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
 				data.drop('status_representative', axis=1, inplace=True, errors='ignore')
 				data.drop('name_representative', axis=1, inplace=True, errors='ignore')
 				data.drop('contact_phone_number', axis=1, inplace=True, errors='ignore')
@@ -723,6 +736,9 @@ elif args.file and args.batchremoveosmfield:
 				data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
 				data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
 				data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
+				data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+				data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+				data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
 				data.drop('status_representative', axis=1, inplace=True, errors='ignore')
 				data.drop('name_representative', axis=1, inplace=True, errors='ignore')
 				data.drop('contact_phone_number', axis=1, inplace=True, errors='ignore')
@@ -751,6 +767,8 @@ elif args.file and args.batchremoveosmfield:
 elif args.file and args.removeosmfield and args.name:
 	data = read_csv(args.file)
 	fileName = raw_input("Enter File Name: ")
+	data.drop('surveyor_name', axis=1, inplace=True, errors='ignore')
+	data.drop('surveyor_name_other', axis=1, inplace=True, errors='ignore')
 	data.drop('start', axis=1, inplace=True, errors='ignore')
 	data.drop('end', axis=1, inplace=True, errors='ignore')
 	data.drop('today', axis=1, inplace=True, errors='ignore')
@@ -758,7 +776,7 @@ elif args.file and args.removeosmfield and args.name:
 	data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
 	data.drop('simserial', axis=1, inplace=True, errors='ignore')
 	data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+	data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')x
 	data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
 	data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
 	data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
@@ -775,6 +793,9 @@ elif args.file and args.removeosmfield and args.name:
 	data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
 	data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
 	data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
+	data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+	data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+	data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
 	data.drop('status_representative', axis=1, inplace=True, errors='ignore')
 	data.drop('name_representative', axis=1, inplace=True, errors='ignore')
 	data.drop('contact_phone_number', axis=1, inplace=True, errors='ignore')
@@ -823,6 +844,9 @@ elif args.file and args.removeosmfield:
 	data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
 	data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
 	data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
+	data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+	data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+	data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
 	data.drop('status_representative', axis=1, inplace=True, errors='ignore')
 	data.drop('name_representative', axis=1, inplace=True, errors='ignore')
 	data.drop('contact_phone_number', axis=1, inplace=True, errors='ignore')
@@ -875,6 +899,9 @@ elif args.file and args.batchremovefield:
 				data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
 				data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
 				data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
+				data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+				data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+				data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
 				data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
 				data.drop('thanks', axis=1, inplace=True, errors='ignore')
 				data.drop('__version__', axis=1, inplace=True, errors='ignore')
@@ -917,6 +944,9 @@ elif args.file and args.batchremovefield:
 				data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
 				data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
 				data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
+				data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+				data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+				data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
 				data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
 				data.drop('thanks', axis=1, inplace=True, errors='ignore')
 				data.drop('__version__', axis=1, inplace=True, errors='ignore')
@@ -961,6 +991,9 @@ elif args.file and args.removefield and args.name:
 	data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
 	data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
 	data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
+	data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+	data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+	data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
 	data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
 	data.drop('thanks', axis=1, inplace=True, errors='ignore')
 	data.drop('__version__', axis=1, inplace=True, errors='ignore')
@@ -1002,6 +1035,9 @@ elif args.file and args.removefield:
 	data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
 	data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
 	data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
+	data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+	data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+	data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
 	data.drop('thanks', axis=1, inplace=True, errors='ignore')
 	data.drop('__version__', axis=1, inplace=True, errors='ignore')
 	data.drop('_id', axis=1, inplace=True, errors='ignore')
@@ -1144,6 +1180,7 @@ elif args.file and args.batchtitlecase:
 		print '				'
 
 ## Single file title casing reformat - allows for custom output name
+# TODO add an exception for roman letters to not capitalize them
         	
 elif args.file and args.titlecase and args.name:
 	capitalizer = lambda x: str(x).title()
