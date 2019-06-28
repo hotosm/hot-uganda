@@ -85,9 +85,9 @@ if args.file and args.prepcsv:
             if filename.endswith('.csv'):
                 data = read_csv(args.file+filename, delimiter=";")
                 data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-        print '			'
-        print 'Batch CSV prep complete!'
-        print '			'
+        print('			')
+        print('Batch CSV prep complete!')
+        print('			')
     elif args.file == '.':
         path = os.getcwd()
         filenames = os.listdir(path)
@@ -95,22 +95,22 @@ if args.file and args.prepcsv:
             if filename.endswith('.csv'):
                 data = read_csv(filename, delimiter=";")
                 data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-        print '			'
-        print 'Batch CSV prep complete!'
-        print '			'
+        print('			')
+        print('Batch CSV prep complete!')
+        print('			')
     elif args.file.endswith('.csv'):
             data = read_csv(args.file, delimiter=";")
             data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-            print '			'
-            print 'CSV prep complete!'
-            print '			'
+            print('			')
+            print('CSV prep complete!')
+            print('			')
     else:
-        print '				'
-        print 'Something went wrong...'
-        print '				'
+        print('				')
+        print('Something went wrong...')
+        print('				')
 
 
-## Batch fix of field kobo server lat/lon information 
+## Batch fix of field kobo server lat/lon information
 
 elif args.file and args.batchfixlatlon:
     if args.file.endswith('/'):
@@ -138,9 +138,9 @@ elif args.file and args.batchfixlatlon:
                 }
                 edited_data = data.rename(columns = old_names)
                 edited_data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Batch fix of lat/lons complete!'
-        print '				'
+        print('				')
+        print('Batch fix of lat/lons complete!')
+        print('				')
 
     elif args.file == '.':
         path = os.getcwd()
@@ -168,16 +168,16 @@ elif args.file and args.batchfixlatlon:
                 }
                 edited_data = data.rename(columns = old_names)
                 edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Batch fix of lat/lons complete!'
-        print '				'
+        print('				')
+        print('Batch fix of lat/lons complete!')
+        print('				')
     else:
-        print 'You have selected the wrong argument. Please try again.'
+        print('You have selected the wrong argument. Please try again.')
 
 ## Batch merging of CSV data - allows for a custom out file name
 
 elif args.file and args.batchmergecsv and args.name:
-    newName = raw_input("Enter File Name: ")
+    newName = input("Enter File Name: ")
     if args.file.endswith('/'):
         filenames = os.listdir(args.file)
         fieldnames = []
@@ -196,9 +196,9 @@ elif args.file and args.batchmergecsv and args.name:
                     reader = csv.DictReader(f_in)
                     for line in reader:
                         writer.writerow(line)
-        print '				'
-        print 'Batch merge complete!'
-        print '				'
+        print('				')
+        print('Batch merge complete!')
+        print('				')
     elif args.file == '.':
         path = os.getcwd()
         filenames = os.listdir(path)
@@ -220,13 +220,13 @@ elif args.file and args.batchmergecsv and args.name:
                         reader = csv.DictReader(f_in)
                         for line in reader:
                             writer.writerow(line)
-        print '				'
-        print 'Batch merge complete!'
-        print '				'
+        print('				')
+        print('Batch merge complete!')
+        print('				')
     else:
-        print '					'
-        print 'Something went wrong...'
-        print '					'
+        print('					')
+        print('Something went wrong...')
+        print('					')
 
 ## Batch merging of CSV data - without custom name
 
@@ -249,9 +249,9 @@ elif args.file and args.batchmergecsv:
                     reader = csv.DictReader(f_in)
                     for line in reader:
                         writer.writerow(line)
-        print '				'
-        print 'Batch merge complete!'
-        print '				'
+        print('				')
+        print('Batch merge complete!')
+        print('				')
     elif args.file == '.':
         path = os.getcwd()
         filenames = os.listdir(path)
@@ -273,13 +273,13 @@ elif args.file and args.batchmergecsv:
                         reader = csv.DictReader(f_in)
                         for line in reader:
                             writer.writerow(line)
-        print '				'
-        print 'Batch merge complete!'
-        print '				'
+        print('				')
+        print('Batch merge complete!')
+        print('				')
     else:
-        print '					'
-        print 'Something went wrong...'
-        print '					'
+        print('					')
+        print('Something went wrong...')
+        print('					')
 
 ## Batch reformat _ to : for osm
 elif args.file and args.batchosmconform:
@@ -301,9 +301,9 @@ elif args.file and args.batchosmconform:
                 }
                 edited_data = data.rename(columns = old_names)
                 edited_data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Batch fix of Address columns to OSM Standards!'
-        print '				'
+        print('				')
+        print('Batch fix of Address columns to OSM Standards!')
+        print('				')
 
     elif args.file == '.':
         path = os.getcwd()
@@ -324,18 +324,18 @@ elif args.file and args.batchosmconform:
                 }
                 edited_data = data.rename(columns = old_names)
                 edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Batch fix of Address columns to OSM Standards!'
-        print '				'
+        print('				')
+        print('Batch fix of Address columns to OSM Standards!')
+        print('				')
     else:
-        print 'You have selected the wrong argument. Please try again.'
+        print('You have selected the wrong argument. Please try again.')
 
 ## Single file reformat of _ to : for osm with custom name
 
 elif args.file and args.osmconform and args.name:
     if args.file.startswith("'/"):
         filenames = args.file
-        newName = raw_input("Enter File Name: ")
+        newName = input("Enter File Name: ")
         for filename in filenames:
             data = read_csv(args.file+filename)
             old_names = {
@@ -351,12 +351,12 @@ elif args.file and args.osmconform and args.name:
             }
             edited_data = data.rename(columns = old_names)
             edited_data.to_csv(newName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Address columns now conform to OSM Standards!'
-        print '				'
+        print('				')
+        print('Address columns now conform to OSM Standards!')
+        print('				')
     elif args.file.endswith('/'):
         filenames = args.file
-        newName = raw_input("Enter File Name: ")
+        newName = input("Enter File Name: ")
         for filename in filenames:
             data = read_csv(args.file+filename)
             old_names = {
@@ -372,12 +372,12 @@ elif args.file and args.osmconform and args.name:
             }
             edited_data = data.rename(columns = old_names)
             edited_data.to_csv(newName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Address columns now conform to OSM Standards!'
-        print '				'
+        print('				')
+        print('Address columns now conform to OSM Standards!')
+        print('				')
     else:
         filenames = args.file
-        newName = raw_input("Enter File Name: ")
+        newName = input("Enter File Name: ")
         for filename in filenames:
             data = read_csv(args.file)
             old_names = {
@@ -393,9 +393,9 @@ elif args.file and args.osmconform and args.name:
             }
             edited_data = data.rename(columns = old_names)
             edited_data.to_csv(newName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Address columns now conform to OSM Standards!'
-        print '				'
+        print('				')
+        print('Address columns now conform to OSM Standards!')
+        print('				')
 
 ## Single file reformat of _ to : for osm
 
@@ -417,9 +417,9 @@ elif args.file and args.osmconform:
             }
             edited_data = data.rename(columns = old_names)
             edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Address columns now conform to OSM Standards!'
-        print '				'
+        print('				')
+        print('Address columns now conform to OSM Standards!')
+        print('				')
     elif args.file.endswith('/'):
         filenames = args.file
         for filename in filenames:
@@ -437,9 +437,9 @@ elif args.file and args.osmconform:
             }
             edited_data = data.rename(columns = old_names)
             edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Address columns now conform to OSM Standards!'
-        print '				'
+        print('				')
+        print('Address columns now conform to OSM Standards!')
+        print('				')
     else:
         filenames = args.file
         for filename in filenames:
@@ -457,16 +457,16 @@ elif args.file and args.osmconform:
             }
             edited_data = data.rename(columns = old_names)
             edited_data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Address columns now conform to OSM Standards!'
-        print '				'
+        print('				')
+        print('Address columns now conform to OSM Standards!')
+        print('				')
 
 
 ## Single file fix of field kobo server lat/lon information  - allows for a custom out file name
 
 elif args.file and args.fixlatlon and args.name:
     filenames = args.file
-    newName = raw_input("Enter File Name: ")
+    newName = input("Enter File Name: ")
     for filename in filenames:
         data = read_csv(args.file)
         old_names = {
@@ -489,11 +489,11 @@ elif args.file and args.fixlatlon and args.name:
         }
         edited_data = data.rename(columns = old_names)
         edited_data.to_csv(newName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-    print '				'
-    print 'Fix of lat/lon complete!'
-    print '				'
+    print('				')
+    print('Fix of lat/lon complete!')
+    print('				')
 
-## Single file fix of field kobo server lat/lon information 
+## Single file fix of field kobo server lat/lon information
 
 elif args.file and args.fixlatlon:
     if args.file.startswith("'/"):
@@ -520,9 +520,9 @@ elif args.file and args.fixlatlon:
             }
             edited_data = data.rename(columns = old_names)
             edited_data.to_csv(filename+'_editedlatlon.csv', quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Fix of lat/lon complete!'
-        print '				'
+        print('				')
+        print('Fix of lat/lon complete!')
+        print('				')
     else:
         filenames = args.file
         for filename in filenames:
@@ -547,9 +547,9 @@ elif args.file and args.fixlatlon:
             }
             edited_data = data.rename(columns = old_names)
             edited_data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Fix of lat/lon complete!'
-        print '				'
+        print('				')
+        print('Fix of lat/lon complete!')
+        print('				')
 
 ## Batch remove duplicate columns
 
@@ -561,9 +561,9 @@ elif args.file and args.batchremoveduplicates:
                 data = read_csv(args.file+filename)
                 edited_data = data.drop(list(data.filter(regex = '/')), axis = 1)
                 edited_data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Batch removal of duplicate/unnecessary columns complete!'
-        print '				'
+        print('				')
+        print('Batch removal of duplicate/unnecessary columns complete!')
+        print('				')
 
     elif args.file == '.':
         path = os.getcwd()
@@ -573,22 +573,22 @@ elif args.file and args.batchremoveduplicates:
                 data = read_csv(filename)
                 edited_data = data.drop(list(data.filter(regex = '/')), axis = 1)
                 edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Batch removal of duplicate/unnecessary columns complete!'
-        print '				'
+        print('				')
+        print('Batch removal of duplicate/unnecessary columns complete!')
+        print('				')
     else:
-        print 'You have selected the wrong argument. Please try again.'
+        print('You have selected the wrong argument. Please try again.')
 
 ## Single file duplicate columns removal - allows for a custom out file name
 
 elif args.file and args.removeduplicates and args.name:
     data = read_csv(args.file)
-    fileName = raw_input("Enter File Name: ")
+    fileName = input("Enter File Name: ")
     filtered_data = data.drop(list(data.filter(regex = '/')), axis = 1)
     filtered_data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-    print '				'
-    print 'Removed duplicate/unnecessary columns!'
-    print '				'
+    print('				')
+    print('Removed duplicate/unnecessary columns!')
+    print('				')
 
 ## Single file duplicate columns removal
 
@@ -596,9 +596,9 @@ elif args.file and args.removeduplicates:
     data = read_csv(args.file)
     filtered_data = data.drop(list(data.filter(regex = '/')), axis = 1)
     filtered_data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-    print '				'
-    print 'Removed duplicate/unnecessary columns!'
-    print '				'
+    print('				')
+    print('Removed duplicate/unnecessary columns!')
+    print('				')
 
 ## Batch remove empty columns
 
@@ -610,9 +610,9 @@ elif args.file and args.batchremovecolumn:
                 data = read_csv(args.file+filename)
                 edited_data = data.dropna(axis='columns', how='all')
                 edited_data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Batch removal of empty columns complete!'
-        print '				'
+        print('				')
+        print('Batch removal of empty columns complete!')
+        print('				')
 
     elif args.file == '.':
         path = os.getcwd()
@@ -622,23 +622,23 @@ elif args.file and args.batchremovecolumn:
                 data = read_csv(filename)
                 edited_data = data.dropna(axis='columns', how='all')
                 edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Batch removal of empty columns complete!'
-        print '				'
+        print('				')
+        print('Batch removal of empty columns complete!')
+        print('				')
     else:
-        print 'You have selected the wrong argument. Please try again.'
+        print('You have selected the wrong argument. Please try again.')
 
 
 ## Single file empty columns removal - allows for a custom out file name
 
 elif args.file and args.removecolumn and args.name:
     data = read_csv(args.file)
-    fileName = raw_input("Enter File Name: ")
+    fileName = input("Enter File Name: ")
     filtered_data = data.dropna(axis='columns', how='all')
     filtered_data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-    print '				'
-    print 'Removed blank columns!'
-    print '				'
+    print('				')
+    print('Removed blank columns!')
+    print('				')
 
 ## Single file empty column removal
 
@@ -646,9 +646,9 @@ elif args.file and args.removecolumn:
     data = read_csv(args.file)
     filtered_data = data.dropna(axis='columns', how='all')
     filtered_data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-    print '				'
-    print 'Removed blank columns!'
-    print '				'
+    print('				')
+    print('Removed blank columns!')
+    print('				')
 
 
 ## Batch remove non-osm fields
@@ -704,9 +704,9 @@ elif args.file and args.batchremoveosmfield:
                 data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
                 data.drop('_index', axis=1, inplace=True, errors='ignore')
                 data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Batch removal of non-osm fields complete!'
-        print '				'
+        print('				')
+        print('Batch removal of non-osm fields complete!')
+        print('				')
 
     elif args.file == '.':
         path = os.getcwd()
@@ -759,18 +759,18 @@ elif args.file and args.batchremoveosmfield:
                 data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
                 data.drop('_index', axis=1, inplace=True, errors='ignore')
                 data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Batch removal of non-osm fields complete!'
-        print '				'
+        print('				')
+        print('Batch removal of non-osm fields complete!')
+        print('				')
     else:
-        print 'You have selected the wrong argument. Please try again.'
+        print('You have selected the wrong argument. Please try again.')
 
 
 ## Single file osm cleaning columns removal - allows for a custom out file name
 
 elif args.file and args.removeosmfield and args.name:
     data = read_csv(args.file)
-    fileName = raw_input("Enter File Name: ")
+    fileName = input("Enter File Name: ")
     data.drop('surveyor_name', axis=1, inplace=True, errors='ignore')
     data.drop('surveyor_name_other', axis=1, inplace=True, errors='ignore')
     data.drop('start', axis=1, inplace=True, errors='ignore')
@@ -816,9 +816,9 @@ elif args.file and args.removeosmfield and args.name:
     data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
     data.drop('_index', axis=1, inplace=True, errors='ignore')
     data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-    print '				'
-    print 'Removed non-osm fields!'
-    print '				'
+    print('				')
+    print('Removed non-osm fields!')
+    print('				')
 
 ## Single file osm cleaning column removal
 
@@ -869,9 +869,9 @@ elif args.file and args.removeosmfield:
     data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
     data.drop('_index', axis=1, inplace=True, errors='ignore')
     data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-    print '				'
-    print 'Removed non-osm fields!'
-    print '				'
+    print('				')
+    print('Removed non-osm fields!')
+    print('				')
 
 ## Batch remove unneeded form-fields!
 
@@ -916,9 +916,9 @@ elif args.file and args.batchremovefield:
                 data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
                 data.drop('_index', axis=1, inplace=True, errors='ignore')
                 data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Batch removal of unneeded form-fields! complete!'
-        print '				'
+        print('				')
+        print('Batch removal of unneeded form-fields! complete!')
+        print('				')
 
     elif args.file == '.':
         path = os.getcwd()
@@ -961,18 +961,18 @@ elif args.file and args.batchremovefield:
                 data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
                 data.drop('_index', axis=1, inplace=True, errors='ignore')
                 data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Batch removal of unneeded form-fields! complete!'
-        print '				'
+        print('				')
+        print('Batch removal of unneeded form-fields! complete!')
+        print('				')
     else:
-        print 'You have selected the wrong argument. Please try again.'
+        print('You have selected the wrong argument. Please try again.')
 
 
 ## Single file cleaning unneeded form-fields! - allows for a custom out file name
 
 elif args.file and args.removefield and args.name:
     data = read_csv(args.file)
-    fileName = raw_input("Enter File Name: ")
+    fileName = input("Enter File Name: ")
     data.drop('start', axis=1, inplace=True, errors='ignore')
     data.drop('end', axis=1, inplace=True, errors='ignore')
     data.drop('today', axis=1, inplace=True, errors='ignore')
@@ -1008,9 +1008,9 @@ elif args.file and args.removefield and args.name:
     data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
     data.drop('_index', axis=1, inplace=True, errors='ignore')
     data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-    print '				'
-    print 'Removed unneeded form-fields!'
-    print '				'
+    print('				')
+    print('Removed unneeded form-fields!')
+    print('				')
 
 ## Single file cleaning unneeded form-fields!
 
@@ -1051,9 +1051,9 @@ elif args.file and args.removefield:
     data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
     data.drop('_index', axis=1, inplace=True, errors='ignore')
     data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-    print '				'
-    print 'Removed unneeded form-fields!'
-    print '				'
+    print('				')
+    print('Removed unneeded form-fields!')
+    print('				')
 
 ## Batch file title casing reformat
 
@@ -1127,9 +1127,9 @@ elif args.file and args.batchtitlecase:
                 except KeyError:
                     pass
                 data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Batch formatted column values in Title Casing complete!'
-        print '				'
+        print('				')
+        print('Batch formatted column values in Title Casing complete!')
+        print('				')
 
     elif args.file == '.':
         path = os.getcwd()
@@ -1201,9 +1201,9 @@ elif args.file and args.batchtitlecase:
                 except KeyError:
                     pass
                 data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-        print '				'
-        print 'Batch formatted column values in Title Casing complete!'
-        print '				'
+        print('				')
+        print('Batch formatted column values in Title Casing complete!')
+        print('				')
 
 ## Single file title casing reformat - allows for custom output name
 elif args.file and args.titlecase and args.name:
@@ -1219,7 +1219,7 @@ elif args.file and args.titlecase and args.name:
         return ' '.join(outval)
     capitalizer = lambda x: capitalize(x)
     data = read_csv(args.file,na_filter=False)
-    fileName = raw_input("Enter File Name: ")
+    fileName = input("Enter File Name: ")
     try:
         data["name"] = data["name"].apply(capitalizer)
     except KeyError:
@@ -1273,9 +1273,9 @@ elif args.file and args.titlecase and args.name:
     except KeyError:
         pass
     data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-    print '				'
-    print 'Formatted column values in Title Casing!'
-    print '				'
+    print('				')
+    print('Formatted column values in Title Casing!')
+    print('				')
 
 ## Single file title casing reformat
 
@@ -1345,9 +1345,9 @@ elif args.file and args.titlecase:
     except KeyError:
         pass
     data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-    print '				'
-    print 'Formatted column values in Title Casing!'
-    print '				'
+    print('				')
+    print('Formatted column values in Title Casing!')
+    print('				')
 
 ## Batch clean of leading/trailing whitespace
 
@@ -1368,9 +1368,9 @@ elif args.file and args.batchcleanwhitespace:
                 writer = csv.writer(file2)
                 writer.writerows(new_rows_list)
                 file2.close()
-        print '				'
-        print 'Batch cleaning of leading and trailing whitespace complete!'
-        print '				'
+        print('				')
+        print('Batch cleaning of leading and trailing whitespace complete!')
+        print('				')
 
     elif args.file == '.':
         path = os.getcwd()
@@ -1389,17 +1389,17 @@ elif args.file and args.batchcleanwhitespace:
                 writer = csv.writer(file2)
                 writer.writerows(new_rows_list)
                 file2.close()
-        print '				'
-        print 'Batch cleaning of leading and trailing whitespace complete!'
-        print '				'
+        print('				')
+        print('Batch cleaning of leading and trailing whitespace complete!')
+        print('				')
     else:
-        print 'You have selected the wrong argument. Please try again.'
+        print('You have selected the wrong argument. Please try again.')
 
 
 ## Single file fix of leading/trailing whitespace - with custom name
 
 elif args.file and args.cleanwhitespace and args.name:
-    fileName = raw_input("Enter File Name: ")
+    fileName = input("Enter File Name: ")
     with open(args.file.encode('utf-8')) as inFile:
         r = csv.DictReader(inFile)
         next(r, None)
@@ -1408,9 +1408,9 @@ elif args.file and args.cleanwhitespace and args.name:
         w.writeheader()
         for row in r:
             w.writerow({fieldname: str(value).strip() for (fieldname, value) in row.items()})
-    print '				'
-    print 'Cleaned leading and trailing whitespace!'
-    print '				'
+    print('				')
+    print('Cleaned leading and trailing whitespace!')
+    print('				')
 
 ## Single file fix of leading/trailing whitespace
 
@@ -1427,21 +1427,21 @@ elif args.file and args.cleanwhitespace:
     writer = csv.writer(file2)
     writer.writerows(new_rows_list)
     file2.close()
-    print '				'
-    print 'Cleaned leading and trailing whitespace!'
-    print '				'
+    print('				')
+    print('Cleaned leading and trailing whitespace!')
+    print('				')
 
 ## If a file/directory is provided without any other arguments
 
 elif args.file:
-    print '						  '
-    print 'Please provide a valid argument. More than a file/directory.'
-    print '						  '
+    print('						  ')
+    print('Please provide a valid argument. More than a file/directory.')
+    print('						  ')
 
 ## If funky stuff happens
 
 else:
-    print '						  '
-    print 'Something went wrong...'
-    print '						  '
-    print 'Please make sure you provide a csv/directoryOfCsvs as your input, and you have selected a proper argument.'
+    print('						  ')
+    print('Something went wrong...')
+    print('						  ')
+    print('Please make sure you provide a csv/directoryOfCsvs as your input, and you have selected a proper argument.')
