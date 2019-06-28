@@ -5,29 +5,29 @@
 
 #Copyright (c) 2018 Apple Inc. All rights reserved.
 
-#Redistribution and use in source and binary forms, with or without modification, 
-#are permitted provided that the following conditions are met:  
+#Redistribution and use in source and binary forms, with or without modification,
+#are permitted provided that the following conditions are met:
 
-#1. Redistributions of source code must retain the above copyright notice, 
+#1. Redistributions of source code must retain the above copyright notice,
 	#this list of conditions and the following disclaimer.
 
-#2. Redistributions in binary form must reproduce the above copyright notice, 
-    #this list of conditions and the following disclaimer in the documentation 
+#2. Redistributions in binary form must reproduce the above copyright notice,
+    #this list of conditions and the following disclaimer in the documentation
     #and/or other materials provided with the distribution.
 
-#3. Neither the name of the copyright holder(s) nor the names of any 
-    #contributors may be used to endorse or promote products derived from this 
+#3. Neither the name of the copyright holder(s) nor the names of any
+    #contributors may be used to endorse or promote products derived from this
     #software without specific prior written permission.
 
-#THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
-#ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
-#WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  
-#IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
-#INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
-#(INCLUDING,  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
-#LOSS OF USE, DATA,  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND 
-#ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
-#(INCLUDING NEGLIGENCE OR OTHERWISE)  ARISING IN ANY WAY OUT OF THE USE OF 
+#THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+#ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+#WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+#IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+#INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+#(INCLUDING,  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+#LOSS OF USE, DATA,  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+#ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+#(INCLUDING NEGLIGENCE OR OTHERWISE)  ARISING IN ANY WAY OUT OF THE USE OF
 #THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ### Name: Clean Form CSVs
@@ -141,7 +141,7 @@ elif args.file and args.batchfixlatlon:
 		print '				'
 		print 'Batch fix of lat/lons complete!'
 		print '				'
-	
+
 	elif args.file == '.':
 		path = os.getcwd()
 		filenames = os.listdir(path)
@@ -304,7 +304,7 @@ elif args.file and args.batchosmconform:
 		print '				'
 		print 'Batch fix of Address columns to OSM Standards!'
 		print '				'
-	
+
 	elif args.file == '.':
 		path = os.getcwd()
 		filenames = os.listdir(path)
@@ -564,7 +564,7 @@ elif args.file and args.batchremoveduplicates:
 		print '				'
 		print 'Batch removal of duplicate/unnecessary columns complete!'
 		print '				'
-	
+
 	elif args.file == '.':
 		path = os.getcwd()
 		filenames = os.listdir(path)
@@ -580,7 +580,7 @@ elif args.file and args.batchremoveduplicates:
 		print 'You have selected the wrong argument. Please try again.'
 
 ## Single file duplicate columns removal - allows for a custom out file name
-        	
+
 elif args.file and args.removeduplicates and args.name:
 	data = read_csv(args.file)
 	fileName = raw_input("Enter File Name: ")
@@ -591,7 +591,7 @@ elif args.file and args.removeduplicates and args.name:
 	print '				'
 
 ## Single file duplicate columns removal
-        	
+
 elif args.file and args.removeduplicates:
 	data = read_csv(args.file)
 	filtered_data = data.drop(list(data.filter(regex = '/')), axis = 1)
@@ -613,7 +613,7 @@ elif args.file and args.batchremovecolumn:
 		print '				'
 		print 'Batch removal of empty columns complete!'
 		print '				'
-	
+
 	elif args.file == '.':
 		path = os.getcwd()
 		filenames = os.listdir(path)
@@ -630,7 +630,7 @@ elif args.file and args.batchremovecolumn:
 
 
 ## Single file empty columns removal - allows for a custom out file name
-        	
+
 elif args.file and args.removecolumn and args.name:
 	data = read_csv(args.file)
 	fileName = raw_input("Enter File Name: ")
@@ -705,7 +705,7 @@ elif args.file and args.batchremoveosmfield:
 		print '				'
 		print 'Batch removal of non-osm fields complete!'
 		print '				'
-	
+
 	elif args.file == '.':
 		path = os.getcwd()
 		filenames = os.listdir(path)
@@ -763,7 +763,7 @@ elif args.file and args.batchremoveosmfield:
 
 
 ## Single file osm cleaning columns removal - allows for a custom out file name
-        	
+
 elif args.file and args.removeosmfield and args.name:
 	data = read_csv(args.file)
 	fileName = raw_input("Enter File Name: ")
@@ -913,7 +913,7 @@ elif args.file and args.batchremovefield:
 		print '				'
 		print 'Batch removal of unneeded form-fields! complete!'
 		print '				'
-	
+
 	elif args.file == '.':
 		path = os.getcwd()
 		filenames = os.listdir(path)
@@ -963,7 +963,7 @@ elif args.file and args.batchremovefield:
 
 
 ## Single file cleaning unneeded form-fields! - allows for a custom out file name
-        	
+
 elif args.file and args.removefield and args.name:
 	data = read_csv(args.file)
 	fileName = raw_input("Enter File Name: ")
@@ -1050,7 +1050,7 @@ elif args.file and args.removefield:
 	print '				'
 
 ## Batch file title casing reformat
-        	
+
 elif args.file and args.batchtitlecase:
 	if args.file.endswith('/'):
 		filenames = os.listdir(args.file)
@@ -1114,7 +1114,7 @@ elif args.file and args.batchtitlecase:
 		print '				'
 		print 'Batch formatted column values in Title Casing complete!'
 		print '				'
-	
+
 	elif args.file == '.':
 		path = os.getcwd()
 		filenames = os.listdir(path)
@@ -1181,61 +1181,73 @@ elif args.file and args.batchtitlecase:
 
 ## Single file title casing reformat - allows for custom output name
 # TODO add an exception for roman letters to not capitalize them
-        	
+
 elif args.file and args.titlecase and args.name:
 	capitalizer = lambda x: str(x).title()
+
+    def capitalize(fieldval):
+        roman_letters = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
+        vals = fieldval.split(' ') # split field string by whitespace
+        outval = []
+        for val in vals:
+            if val in roman_letters:
+                outval.append(val)
+            else:
+                outval.append(val.title())
+        return ' '.join(outval)
+
 	data = read_csv(args.file,na_filter=False)
 	fileName = raw_input("Enter File Name: ")
 	try:
-		data["name"] = data["name"].apply(capitalizer)
+		data["name"] = capitalize(data["name"])
 	except KeyError:
 		pass
 	try:
-		data["alt_name"] = data["alt_name"].apply(capitalizer)
+		data["alt_name"] = capitalize(data["alt_name"])
 	except KeyError:
 		pass
 	try:
-		data["name_representative"] = data["name_representative"].apply(capitalizer)
+		data["name_representative"] = capitalize(data["name_representative"])
 	except KeyError:
 		pass
 	try:
-		data["name_health_professional"] = data["name_health_professional"].apply(capitalizer)
+		data["name_health_professional"] = capitalize(data["name_health_professional"])
 	except KeyError:
 		pass
 	try:
-		data["health_facility"] = data["health_facility"].apply(capitalizer)
+		data["health_facility"] = capitalize(data["health_facility"])
 	except KeyError:
 		pass
 	try:
-		data["addr_district"] = data["addr_district"].apply(capitalizer)
+		data["addr_district"] = capitalize(data["addr_district"])
 	except KeyError:
 		pass
 	try:
-		data["addr_county"] = data["addr_county"].apply(capitalizer)
+		data["addr_county"] = capitalize(data["addr_county"])
 	except KeyError:
 		pass
 	try:
-		data["addr_subcounty"] = data["addr_subcounty"].apply(capitalizer)
+		data["addr_subcounty"] = capitalize(data["addr_subcounty"])
 	except KeyError:
 		pass
 	try:
-		data["addr_parish"] = data["addr_parish"].apply(capitalizer)
+		data["addr_parish"] = capitalize(data["addr_parish"])
 	except KeyError:
 		pass
 	try:
-		data["addr_lc_village"] = data["addr_lc_village"].apply(capitalizer)
+		data["addr_lc_village"] = capitalize(data["addr_lc_village"])
 	except KeyError:
 		pass
 	try:
-		data["addr_settlement"] = data["addr_settlement"].apply(capitalizer)
+		data["addr_settlement"] = capitalize(data["addr_settlement"])
 	except KeyError:
 		pass
 	try:
-		data["addr_zone"] = data["addr_zone"].apply(capitalizer)
+		data["addr_zone"] = capitalize(data["addr_zone"])
 	except KeyError:
 		pass
 	try:
-		data["addr_block"] = data["addr_block"].apply(capitalizer)
+		data["addr_block"] = capitalize(data["addr_block"])
 	except KeyError:
 		pass
 	data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
@@ -1244,61 +1256,71 @@ elif args.file and args.titlecase and args.name:
 	print '				'
 
 ## Single file title casing reformat
-        	
+
 elif args.file and args.titlecase:
 	capitalizer = lambda x: str(x).title()
+    def capitalize(fieldval):
+        roman_letters = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
+        vals = fieldval.split(' ') # split field string by whitespace
+        outval = []
+        for val in vals:
+            if val in roman_letters:
+                outval.append(val)
+            else:
+                outval.append(val.title())
+        return ' '.join(outval)
 	data = read_csv(args.file,na_filter=False)
-	try:
-		data["name"] = data["name"].apply(capitalizer)
-	except KeyError:
-		pass
-	try:
-		data["alt_name"] = data["alt_name"].apply(capitalizer)
-	except KeyError:
-		pass
-	try:
-		data["name_representative"] = data["name_representative"].apply(capitalizer)
-	except KeyError:
-		pass
-	try:
-		data["name_health_professional"] = data["name_health_professional"].apply(capitalizer)
-	except KeyError:
-		pass
-	try:
-		data["health_facility"] = data["health_facility"].apply(capitalizer)
-	except KeyError:
-		pass
-	try:
-		data["addr_district"] = data["addr_district"].apply(capitalizer)
-	except KeyError:
-		pass
-	try:
-		data["addr_county"] = data["addr_county"].apply(capitalizer)
-	except KeyError:
-		pass
-	try:
-		data["addr_subcounty"] = data["addr_subcounty"].apply(capitalizer)
-	except KeyError:
-		pass
-	try:
-		data["addr_parish"] = data["addr_parish"].apply(capitalizer)
-	except KeyError:
-		pass
-	try:
-		data["addr_lc_village"] = data["addr_lc_village"].apply(capitalizer)
-	except KeyError:
-		pass
-	try:
-		data["addr_settlement"] = data["addr_settlement"].apply(capitalizer)
-	except KeyError:
-		pass
-	try:
-		data["addr_zone"] = data["addr_zone"].apply(capitalizer)
-	except KeyError:
-		pass
-	try:
-		data["addr_block"] = data["addr_block"].apply(capitalizer)
-	except KeyError:
+    try:
+        data["name"] = capitalize(data["name"])
+    except KeyError:
+        pass
+    try:
+        data["alt_name"] = capitalize(data["alt_name"])
+    except KeyError:
+        pass
+    try:
+        data["name_representative"] = capitalize(data["name_representative"])
+    except KeyError:
+        pass
+    try:
+        data["name_health_professional"] = capitalize(data["name_health_professional"])
+    except KeyError:
+        pass
+    try:
+        data["health_facility"] = capitalize(data["health_facility"])
+    except KeyError:
+        pass
+    try:
+        data["addr_district"] = capitalize(data["addr_district"])
+    except KeyError:
+        pass
+    try:
+        data["addr_county"] = capitalize(data["addr_county"])
+    except KeyError:
+        pass
+    try:
+        data["addr_subcounty"] = capitalize(data["addr_subcounty"])
+    except KeyError:
+        pass
+    try:
+        data["addr_parish"] = capitalize(data["addr_parish"])
+    except KeyError:
+        pass
+    try:
+        data["addr_lc_village"] = capitalize(data["addr_lc_village"])
+    except KeyError:
+        pass
+    try:
+        data["addr_settlement"] = capitalize(data["addr_settlement"])
+    except KeyError:
+        pass
+    try:
+        data["addr_zone"] = capitalize(data["addr_zone"])
+    except KeyError:
+        pass
+    try:
+        data["addr_block"] = capitalize(data["addr_block"])
+    except KeyError:
 		pass
 	data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
 	print '				'
@@ -1327,7 +1349,7 @@ elif args.file and args.batchcleanwhitespace:
 		print '				'
 		print 'Batch cleaning of leading and trailing whitespace complete!'
 		print '				'
-	
+
 	elif args.file == '.':
 		path = os.getcwd()
 		filenames = os.listdir(path)
