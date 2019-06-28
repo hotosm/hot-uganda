@@ -659,6 +659,8 @@ elif args.file and args.batchremoveosmfield:
         for filename in filenames:
             if filename.endswith('.csv'):
                 data = read_csv(args.file+filename)
+                data.drop('surveyor_name', axis=1, inplace=True, errors='ignore')
+                data.drop('surveyor_name_other', axis=1, inplace=True, errors='ignore')
                 data.drop('start', axis=1, inplace=True, errors='ignore')
                 data.drop('end', axis=1, inplace=True, errors='ignore')
                 data.drop('today', axis=1, inplace=True, errors='ignore')
@@ -712,6 +714,8 @@ elif args.file and args.batchremoveosmfield:
         for filename in filenames:
             if filename.endswith('.csv'):
                 data = read_csv(filename)
+                data.drop('surveyor_name', axis=1, inplace=True, errors='ignore')
+                data.drop('surveyor_name_other', axis=1, inplace=True, errors='ignore')
                 data.drop('start', axis=1, inplace=True, errors='ignore')
                 data.drop('end', axis=1, inplace=True, errors='ignore')
                 data.drop('today', axis=1, inplace=True, errors='ignore')
@@ -820,6 +824,8 @@ elif args.file and args.removeosmfield and args.name:
 
 elif args.file and args.removeosmfield:
     data = read_csv(args.file)
+    data.drop('surveyor_name', axis=1, inplace=True, errors='ignore')
+    data.drop('surveyor_name_other', axis=1, inplace=True, errors='ignore')
     data.drop('start', axis=1, inplace=True, errors='ignore')
     data.drop('end', axis=1, inplace=True, errors='ignore')
     data.drop('today', axis=1, inplace=True, errors='ignore')
@@ -1056,7 +1062,17 @@ elif args.file and args.batchtitlecase:
         filenames = os.listdir(args.file)
         for filename in filenames:
             if filename.endswith('.csv'):
-                capitalizer = lambda x: str(x).title()
+                def capitalize(fieldval):
+                    roman_letters = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
+                    vals = fieldval.split(' ') # split field string by whitespace
+                    outval = []
+                    for val in vals:
+                        if val in roman_letters:
+                            outval.append(val)
+                        else:
+                            outval.append(val.title())
+                    return ' '.join(outval)
+                capitalizer = lambda x: capitalize(x)
                 data = read_csv(args.file+filename,na_filter=False)
                 try:
                     data["name"] = data["name"].apply(capitalizer)
@@ -1120,7 +1136,17 @@ elif args.file and args.batchtitlecase:
         filenames = os.listdir(path)
         for filename in filenames:
             if filename.endswith('.csv'):
-                capitalizer = lambda x: str(x).title()
+                def capitalize(fieldval):
+                    roman_letters = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
+                    vals = fieldval.split(' ') # split field string by whitespace
+                    outval = []
+                    for val in vals:
+                        if val in roman_letters:
+                            outval.append(val)
+                        else:
+                            outval.append(val.title())
+                    return ' '.join(outval)
+                capitalizer = lambda x: capitalize(x)
                 data = read_csv(filename,na_filter=False)
                 try:
                     data["name"] = data["name"].apply(capitalizer)
@@ -1180,11 +1206,7 @@ elif args.file and args.batchtitlecase:
         print '				'
 
 ## Single file title casing reformat - allows for custom output name
-# TODO add an exception for roman letters to not capitalize them
-
 elif args.file and args.titlecase and args.name:
-    capitalizer = lambda x: str(x).title()
-
     def capitalize(fieldval):
         roman_letters = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
         vals = fieldval.split(' ') # split field string by whitespace
@@ -1195,59 +1217,59 @@ elif args.file and args.titlecase and args.name:
             else:
                 outval.append(val.title())
         return ' '.join(outval)
-
+    capitalizer = lambda x: capitalize(x)
     data = read_csv(args.file,na_filter=False)
     fileName = raw_input("Enter File Name: ")
     try:
-        data["name"] = capitalize(data["name"])
+        data["name"] = data["name"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["alt_name"] = capitalize(data["alt_name"])
+        data["alt_name"] = data["alt_name"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["name_representative"] = capitalize(data["name_representative"])
+        data["name_representative"] = data["name_representative"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["name_health_professional"] = capitalize(data["name_health_professional"])
+        data["name_health_professional"] = data["name_health_professional"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["health_facility"] = capitalize(data["health_facility"])
+        data["health_facility"] = data["health_facility"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_district"] = capitalize(data["addr_district"])
+        data["addr_district"] = data["addr_district"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_county"] = capitalize(data["addr_county"])
+        data["addr_county"] = data["addr_county"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_subcounty"] = capitalize(data["addr_subcounty"])
+        data["addr_subcounty"] = data["addr_subcounty"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_parish"] = capitalize(data["addr_parish"])
+        data["addr_parish"] = data["addr_parish"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_lc_village"] = capitalize(data["addr_lc_village"])
+        data["addr_lc_village"] = data["addr_lc_village"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_settlement"] = capitalize(data["addr_settlement"])
+        data["addr_settlement"] = data["addr_settlement"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_zone"] = capitalize(data["addr_zone"])
+        data["addr_zone"] = data["addr_zone"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_block"] = capitalize(data["addr_block"])
+        data["addr_block"] = data["addr_block"].apply(capitalizer)
     except KeyError:
         pass
     data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
@@ -1258,8 +1280,6 @@ elif args.file and args.titlecase and args.name:
 ## Single file title casing reformat
 
 elif args.file and args.titlecase:
-    capitalizer = lambda x: str(x).title()
-
     def capitalize(fieldval):
         roman_letters = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
         vals = fieldval.split(' ') # split field string by whitespace
@@ -1270,58 +1290,58 @@ elif args.file and args.titlecase:
             else:
                 outval.append(val.title())
         return ' '.join(outval)
-
+    capitalizer = lambda x: capitalize(x)
     data = read_csv(args.file,na_filter=False)
     try:
-        data["name"] = capitalize(data["name"])
+        data["name"] = data["name"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["alt_name"] = capitalize(data["alt_name"])
+        data["alt_name"] = data["alt_name"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["name_representative"] = capitalize(data["name_representative"])
+        data["name_representative"] = data["name_representative"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["name_health_professional"] = capitalize(data["name_health_professional"])
+        data["name_health_professional"] = data["name_health_professional"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["health_facility"] = capitalize(data["health_facility"])
+        data["health_facility"] = data["health_facility"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_district"] = capitalize(data["addr_district"])
+        data["addr_district"] = data["addr_district"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_county"] = capitalize(data["addr_county"])
+        data["addr_county"] = data["addr_county"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_subcounty"] = capitalize(data["addr_subcounty"])
+        data["addr_subcounty"] = data["addr_subcounty"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_parish"] = capitalize(data["addr_parish"])
+        data["addr_parish"] = data["addr_parish"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_lc_village"] = capitalize(data["addr_lc_village"])
+        data["addr_lc_village"] = data["addr_lc_village"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_settlement"] = capitalize(data["addr_settlement"])
+        data["addr_settlement"] = data["addr_settlement"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_zone"] = capitalize(data["addr_zone"])
+        data["addr_zone"] = data["addr_zone"].apply(capitalizer)
     except KeyError:
         pass
     try:
-        data["addr_block"] = capitalize(data["addr_block"])
+        data["addr_block"] = data["addr_block"].apply(capitalizer)
     except KeyError:
         pass
     data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
