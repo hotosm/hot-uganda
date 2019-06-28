@@ -9,7 +9,7 @@
 #are permitted provided that the following conditions are met:
 
 #1. Redistributions of source code must retain the above copyright notice,
-	#this list of conditions and the following disclaimer.
+    #this list of conditions and the following disclaimer.
 
 #2. Redistributions in binary form must reproduce the above copyright notice,
     #this list of conditions and the following disclaimer in the documentation
@@ -37,17 +37,17 @@
 ## Import modules
 
 try:
-	import csv
-	import argparse
-	import os
-	import io
-	import pandas as pd
-	from pandas.io.parsers import read_csv
+    import csv
+    import argparse
+    import os
+    import io
+    import pandas as pd
+    from pandas.io.parsers import read_csv
 
 ## Install Pandas if it is not already installed
 
 except ImportError:
-	os.system('pip install pandas')
+    os.system('pip install pandas')
 
 ## Create arguments
 
@@ -79,1111 +79,1111 @@ args = parser.parse_args()
 ## Prep all Kobo form data for processing
 
 if args.file and args.prepcsv:
-	if args.file.endswith('/'):
-		filenames = os.listdir(args.file)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				data = read_csv(args.file+filename, delimiter=";")
-				data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-		print '			'
-		print 'Batch CSV prep complete!'
-		print '			'
-	elif args.file == '.':
-		path = os.getcwd()
-		filenames = os.listdir(path)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				data = read_csv(filename, delimiter=";")
-				data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-		print '			'
-		print 'Batch CSV prep complete!'
-		print '			'
-	elif args.file.endswith('.csv'):
-			data = read_csv(args.file, delimiter=";")
-			data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-			print '			'
-			print 'CSV prep complete!'
-			print '			'
-	else:
-		print '				'
-		print 'Something went wrong...'
-		print '				'
+    if args.file.endswith('/'):
+        filenames = os.listdir(args.file)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                data = read_csv(args.file+filename, delimiter=";")
+                data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
+        print '			'
+        print 'Batch CSV prep complete!'
+        print '			'
+    elif args.file == '.':
+        path = os.getcwd()
+        filenames = os.listdir(path)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                data = read_csv(filename, delimiter=";")
+                data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
+        print '			'
+        print 'Batch CSV prep complete!'
+        print '			'
+    elif args.file.endswith('.csv'):
+            data = read_csv(args.file, delimiter=";")
+            data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
+            print '			'
+            print 'CSV prep complete!'
+            print '			'
+    else:
+        print '				'
+        print 'Something went wrong...'
+        print '				'
 
 
 ## Batch fix of field kobo server lat/lon information 
 
 elif args.file and args.batchfixlatlon:
-	if args.file.endswith('/'):
-		filenames = os.listdir(args.file)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				data = read_csv(args.file+filename)
-				old_names = {
-				'_cbi_facility_point_latitude' : 'latitude',
-				'_cbi_facility_point_longitude' : 'longitude',
-				'_education_facility_point_latitude' : 'latitude',
-				'_education_facility_point_longitude' : 'longitude',
-				'_health_facility_point_latitude' : 'latitude',
-				'_health_facility_point_longitude' : 'longitude',
-				'_other_facilities_point_latitude' : 'latitude',
-				'_other_facilities_point_longitude' : 'longitude',
-				'_community_name_latitude' : 'latitude',
-				'_community_name_longitude' : 'longitude',
-				'_community_geopoint_latitude' : 'latitude',
-				'_community_geopoint_longitude' : 'longitude',
-				'_wash_facility_point_latitude' : 'latitude',
-				'_wash_facility_point_longitude' : 'longitude',
-				'_water_facility_point_latitude': 'latitude',
-				'_water_facility_point_longitude': 'longitude',
-				}
-				edited_data = data.rename(columns = old_names)
-				edited_data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Batch fix of lat/lons complete!'
-		print '				'
+    if args.file.endswith('/'):
+        filenames = os.listdir(args.file)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                data = read_csv(args.file+filename)
+                old_names = {
+                '_cbi_facility_point_latitude' : 'latitude',
+                '_cbi_facility_point_longitude' : 'longitude',
+                '_education_facility_point_latitude' : 'latitude',
+                '_education_facility_point_longitude' : 'longitude',
+                '_health_facility_point_latitude' : 'latitude',
+                '_health_facility_point_longitude' : 'longitude',
+                '_other_facilities_point_latitude' : 'latitude',
+                '_other_facilities_point_longitude' : 'longitude',
+                '_community_name_latitude' : 'latitude',
+                '_community_name_longitude' : 'longitude',
+                '_community_geopoint_latitude' : 'latitude',
+                '_community_geopoint_longitude' : 'longitude',
+                '_wash_facility_point_latitude' : 'latitude',
+                '_wash_facility_point_longitude' : 'longitude',
+                '_water_facility_point_latitude': 'latitude',
+                '_water_facility_point_longitude': 'longitude',
+                }
+                edited_data = data.rename(columns = old_names)
+                edited_data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Batch fix of lat/lons complete!'
+        print '				'
 
-	elif args.file == '.':
-		path = os.getcwd()
-		filenames = os.listdir(path)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				data = read_csv(filename)
-				old_names = {
-				'_cbi_facility_point_latitude' : 'latitude',
-				'_cbi_facility_point_longitude' : 'longitude',
-				'_education_facility_point_latitude' : 'latitude',
-				'_education_facility_point_longitude' : 'longitude',
-				'_health_facility_point_latitude' : 'latitude',
-				'_health_facility_point_longitude' : 'longitude',
-				'_other_facilities_point_latitude' : 'latitude',
-				'_other_facilities_point_longitude' : 'longitude',
-				'_community_name_latitude' : 'latitude',
-				'_community_name_longitude' : 'longitude',
-				'_community_geopoint_latitude' : 'latitude',
-				'_community_geopoint_longitude' : 'longitude',
-				'_wash_facility_point_latitude' : 'latitude',
-				'_wash_facility_point_longitude' : 'longitude',
-				'_water_facility_point_latitude': 'latitude',
-				'_water_facility_point_longitude': 'longitude',
-				}
-				edited_data = data.rename(columns = old_names)
-				edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Batch fix of lat/lons complete!'
-		print '				'
-	else:
-		print 'You have selected the wrong argument. Please try again.'
+    elif args.file == '.':
+        path = os.getcwd()
+        filenames = os.listdir(path)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                data = read_csv(filename)
+                old_names = {
+                '_cbi_facility_point_latitude' : 'latitude',
+                '_cbi_facility_point_longitude' : 'longitude',
+                '_education_facility_point_latitude' : 'latitude',
+                '_education_facility_point_longitude' : 'longitude',
+                '_health_facility_point_latitude' : 'latitude',
+                '_health_facility_point_longitude' : 'longitude',
+                '_other_facilities_point_latitude' : 'latitude',
+                '_other_facilities_point_longitude' : 'longitude',
+                '_community_name_latitude' : 'latitude',
+                '_community_name_longitude' : 'longitude',
+                '_community_geopoint_latitude' : 'latitude',
+                '_community_geopoint_longitude' : 'longitude',
+                '_wash_facility_point_latitude' : 'latitude',
+                '_wash_facility_point_longitude' : 'longitude',
+                '_water_facility_point_latitude': 'latitude',
+                '_water_facility_point_longitude': 'longitude',
+                }
+                edited_data = data.rename(columns = old_names)
+                edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Batch fix of lat/lons complete!'
+        print '				'
+    else:
+        print 'You have selected the wrong argument. Please try again.'
 
 ## Batch merging of CSV data - allows for a custom out file name
 
 elif args.file and args.batchmergecsv and args.name:
-	newName = raw_input("Enter File Name: ")
-	if args.file.endswith('/'):
-		filenames = os.listdir(args.file)
-		fieldnames = []
-		for filename in filenames:
-			with open(args.file+'/'+filename, "r") as f_in:
-				reader = csv.reader(f_in)
-				headers = next(reader)
-				for h in headers:
-					if h not in fieldnames:
-						fieldnames.append(h)
-		with open(newName+".csv", "wb") as f_out:
-			writer = csv.DictWriter(f_out, fieldnames=fieldnames)
-			writer.writeheader()
-			for filename in filenames:
-				with open(args.file+'/'+filename, "r") as f_in:
-					reader = csv.DictReader(f_in)
-					for line in reader:
-						writer.writerow(line)
-		print '				'
-		print 'Batch merge complete!'
-		print '				'
-	elif args.file == '.':
-		path = os.getcwd()
-		filenames = os.listdir(path)
-		fieldnames = []
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				with open(filename, "r") as f_in:
-					reader = csv.reader(f_in)
-					headers = next(reader)
-					for h in headers:
-						if h not in fieldnames:
-							fieldnames.append(h)
-		with open(newName+".csv", "wb") as f_out:
-			writer = csv.DictWriter(f_out, fieldnames=fieldnames)
-			writer.writeheader()
-			for filename in filenames:
-				if filename.endswith('.csv'):
-					with open(filename, "r") as f_in:
-						reader = csv.DictReader(f_in)
-						for line in reader:
-							writer.writerow(line)
-		print '				'
-		print 'Batch merge complete!'
-		print '				'
-	else:
-		print '					'
-		print 'Something went wrong...'
-		print '					'
+    newName = raw_input("Enter File Name: ")
+    if args.file.endswith('/'):
+        filenames = os.listdir(args.file)
+        fieldnames = []
+        for filename in filenames:
+            with open(args.file+'/'+filename, "r") as f_in:
+                reader = csv.reader(f_in)
+                headers = next(reader)
+                for h in headers:
+                    if h not in fieldnames:
+                        fieldnames.append(h)
+        with open(newName+".csv", "wb") as f_out:
+            writer = csv.DictWriter(f_out, fieldnames=fieldnames)
+            writer.writeheader()
+            for filename in filenames:
+                with open(args.file+'/'+filename, "r") as f_in:
+                    reader = csv.DictReader(f_in)
+                    for line in reader:
+                        writer.writerow(line)
+        print '				'
+        print 'Batch merge complete!'
+        print '				'
+    elif args.file == '.':
+        path = os.getcwd()
+        filenames = os.listdir(path)
+        fieldnames = []
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                with open(filename, "r") as f_in:
+                    reader = csv.reader(f_in)
+                    headers = next(reader)
+                    for h in headers:
+                        if h not in fieldnames:
+                            fieldnames.append(h)
+        with open(newName+".csv", "wb") as f_out:
+            writer = csv.DictWriter(f_out, fieldnames=fieldnames)
+            writer.writeheader()
+            for filename in filenames:
+                if filename.endswith('.csv'):
+                    with open(filename, "r") as f_in:
+                        reader = csv.DictReader(f_in)
+                        for line in reader:
+                            writer.writerow(line)
+        print '				'
+        print 'Batch merge complete!'
+        print '				'
+    else:
+        print '					'
+        print 'Something went wrong...'
+        print '					'
 
 ## Batch merging of CSV data - without custom name
 
 elif args.file and args.batchmergecsv:
-	if args.file.endswith('/'):
-		filenames = os.listdir(args.file)
-		fieldnames = []
-		for filename in filenames:
-			with open(args.file+'/'+filename, "r") as f_in:
-				reader = csv.reader(f_in)
-				headers = next(reader)
-				for h in headers:
-					if h not in fieldnames:
-						fieldnames.append(h)
-		with open("merged_csv_output.csv", "wb") as f_out:
-			writer = csv.DictWriter(f_out, fieldnames=fieldnames)
-			writer.writeheader()
-			for filename in filenames:
-				with open(args.file+'/'+filename, "r") as f_in:
-					reader = csv.DictReader(f_in)
-					for line in reader:
-						writer.writerow(line)
-		print '				'
-		print 'Batch merge complete!'
-		print '				'
-	elif args.file == '.':
-		path = os.getcwd()
-		filenames = os.listdir(path)
-		fieldnames = []
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				with open(filename, "r") as f_in:
-					reader = csv.reader(f_in)
-					headers = next(reader)
-					for h in headers:
-						if h not in fieldnames:
-							fieldnames.append(h)
-		with open("merged_csv_output.csv", "wb") as f_out:
-			writer = csv.DictWriter(f_out, fieldnames=fieldnames)
-			writer.writeheader()
-			for filename in filenames:
-				if filename.endswith('.csv'):
-					with open(filename, "r") as f_in:
-						reader = csv.DictReader(f_in)
-						for line in reader:
-							writer.writerow(line)
-		print '				'
-		print 'Batch merge complete!'
-		print '				'
-	else:
-		print '					'
-		print 'Something went wrong...'
-		print '					'
+    if args.file.endswith('/'):
+        filenames = os.listdir(args.file)
+        fieldnames = []
+        for filename in filenames:
+            with open(args.file+'/'+filename, "r") as f_in:
+                reader = csv.reader(f_in)
+                headers = next(reader)
+                for h in headers:
+                    if h not in fieldnames:
+                        fieldnames.append(h)
+        with open("merged_csv_output.csv", "wb") as f_out:
+            writer = csv.DictWriter(f_out, fieldnames=fieldnames)
+            writer.writeheader()
+            for filename in filenames:
+                with open(args.file+'/'+filename, "r") as f_in:
+                    reader = csv.DictReader(f_in)
+                    for line in reader:
+                        writer.writerow(line)
+        print '				'
+        print 'Batch merge complete!'
+        print '				'
+    elif args.file == '.':
+        path = os.getcwd()
+        filenames = os.listdir(path)
+        fieldnames = []
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                with open(filename, "r") as f_in:
+                    reader = csv.reader(f_in)
+                    headers = next(reader)
+                    for h in headers:
+                        if h not in fieldnames:
+                            fieldnames.append(h)
+        with open("merged_csv_output.csv", "wb") as f_out:
+            writer = csv.DictWriter(f_out, fieldnames=fieldnames)
+            writer.writeheader()
+            for filename in filenames:
+                if filename.endswith('.csv'):
+                    with open(filename, "r") as f_in:
+                        reader = csv.DictReader(f_in)
+                        for line in reader:
+                            writer.writerow(line)
+        print '				'
+        print 'Batch merge complete!'
+        print '				'
+    else:
+        print '					'
+        print 'Something went wrong...'
+        print '					'
 
 ## Batch reformat _ to : for osm
 elif args.file and args.batchosmconform:
-	if args.file.endswith('/'):
-		filenames = os.listdir(args.file)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				data = read_csv(args.file+filename)
-				old_names = {
-				'addr_district' : 'addr:district',
-				'addr_county' : 'addr:county',
-				'addr_subcounty' : 'addr:subcounty',
-				'addr_parish' : 'addr:parish',
-				'addr_lc_village' : 'addr:lc_village',
-				'addr_rs_village' : 'addr:rs_village',
-				'addr_settlement' : 'addr:settlement',
-				'addr_zone' : 'addr:zone',
-				'addr_block' : 'addr:block'
-				}
-				edited_data = data.rename(columns = old_names)
-				edited_data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Batch fix of Address columns to OSM Standards!'
-		print '				'
+    if args.file.endswith('/'):
+        filenames = os.listdir(args.file)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                data = read_csv(args.file+filename)
+                old_names = {
+                'addr_district' : 'addr:district',
+                'addr_county' : 'addr:county',
+                'addr_subcounty' : 'addr:subcounty',
+                'addr_parish' : 'addr:parish',
+                'addr_lc_village' : 'addr:lc_village',
+                'addr_rs_village' : 'addr:rs_village',
+                'addr_settlement' : 'addr:settlement',
+                'addr_zone' : 'addr:zone',
+                'addr_block' : 'addr:block'
+                }
+                edited_data = data.rename(columns = old_names)
+                edited_data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Batch fix of Address columns to OSM Standards!'
+        print '				'
 
-	elif args.file == '.':
-		path = os.getcwd()
-		filenames = os.listdir(path)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				data = read_csv(filename)
-				old_names = {
-				'addr_district' : 'addr:district',
-				'addr_county' : 'addr:county',
-				'addr_subcounty' : 'addr:subcounty',
-				'addr_parish' : 'addr:parish',
-				'addr_lc_village' : 'addr:lc_village',
-				'addr_rs_village' : 'addr:rs_village',
-				'addr_settlement' : 'addr:settlement',
-				'addr_zone' : 'addr:zone',
-				'addr_block' : 'addr:block'
-				}
-				edited_data = data.rename(columns = old_names)
-				edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Batch fix of Address columns to OSM Standards!'
-		print '				'
-	else:
-		print 'You have selected the wrong argument. Please try again.'
+    elif args.file == '.':
+        path = os.getcwd()
+        filenames = os.listdir(path)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                data = read_csv(filename)
+                old_names = {
+                'addr_district' : 'addr:district',
+                'addr_county' : 'addr:county',
+                'addr_subcounty' : 'addr:subcounty',
+                'addr_parish' : 'addr:parish',
+                'addr_lc_village' : 'addr:lc_village',
+                'addr_rs_village' : 'addr:rs_village',
+                'addr_settlement' : 'addr:settlement',
+                'addr_zone' : 'addr:zone',
+                'addr_block' : 'addr:block'
+                }
+                edited_data = data.rename(columns = old_names)
+                edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Batch fix of Address columns to OSM Standards!'
+        print '				'
+    else:
+        print 'You have selected the wrong argument. Please try again.'
 
 ## Single file reformat of _ to : for osm with custom name
 
 elif args.file and args.osmconform and args.name:
-	if args.file.startswith("'/"):
-		filenames = args.file
-		newName = raw_input("Enter File Name: ")
-		for filename in filenames:
-			data = read_csv(args.file+filename)
-			old_names = {
-			'addr_district' : 'addr:district',
-			'addr_county' : 'addr:county',
-			'addr_subcounty' : 'addr:subcounty',
-			'addr_parish' : 'addr:parish',
-			'addr_lc_village' : 'addr:lc_village',
-			'addr_rs_village' : 'addr:rs_village',
-			'addr_settlement' : 'addr:settlement',
-			'addr_zone' : 'addr:zone',
-			'addr_block' : 'addr:block'
-			}
-			edited_data = data.rename(columns = old_names)
-			edited_data.to_csv(newName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Address columns now conform to OSM Standards!'
-		print '				'
-	elif args.file.endswith('/'):
-		filenames = args.file
-		newName = raw_input("Enter File Name: ")
-		for filename in filenames:
-			data = read_csv(args.file+filename)
-			old_names = {
-			'addr_district' : 'addr:district',
-			'addr_county' : 'addr:county',
-			'addr_subcounty' : 'addr:subcounty',
-			'addr_parish' : 'addr:parish',
-			'addr_lc_village' : 'addr:lc_village',
-			'addr_rs_village' : 'addr:rs_village',
-			'addr_settlement' : 'addr:settlement',
-			'addr_zone' : 'addr:zone',
-			'addr_block' : 'addr:block'
-			}
-			edited_data = data.rename(columns = old_names)
-			edited_data.to_csv(newName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Address columns now conform to OSM Standards!'
-		print '				'
-	else:
-		filenames = args.file
-		newName = raw_input("Enter File Name: ")
-		for filename in filenames:
-			data = read_csv(args.file)
-			old_names = {
-			'addr_district' : 'addr:district',
-			'addr_county' : 'addr:county',
-			'addr_subcounty' : 'addr:subcounty',
-			'addr_parish' : 'addr:parish',
-			'addr_lc_village' : 'addr:lc_village',
-			'addr_rs_village' : 'addr:rs_village',
-			'addr_settlement' : 'addr:settlement',
-			'addr_zone' : 'addr:zone',
-			'addr_block' : 'addr:block'
-			}
-			edited_data = data.rename(columns = old_names)
-			edited_data.to_csv(newName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Address columns now conform to OSM Standards!'
-		print '				'
+    if args.file.startswith("'/"):
+        filenames = args.file
+        newName = raw_input("Enter File Name: ")
+        for filename in filenames:
+            data = read_csv(args.file+filename)
+            old_names = {
+            'addr_district' : 'addr:district',
+            'addr_county' : 'addr:county',
+            'addr_subcounty' : 'addr:subcounty',
+            'addr_parish' : 'addr:parish',
+            'addr_lc_village' : 'addr:lc_village',
+            'addr_rs_village' : 'addr:rs_village',
+            'addr_settlement' : 'addr:settlement',
+            'addr_zone' : 'addr:zone',
+            'addr_block' : 'addr:block'
+            }
+            edited_data = data.rename(columns = old_names)
+            edited_data.to_csv(newName+'.csv', quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Address columns now conform to OSM Standards!'
+        print '				'
+    elif args.file.endswith('/'):
+        filenames = args.file
+        newName = raw_input("Enter File Name: ")
+        for filename in filenames:
+            data = read_csv(args.file+filename)
+            old_names = {
+            'addr_district' : 'addr:district',
+            'addr_county' : 'addr:county',
+            'addr_subcounty' : 'addr:subcounty',
+            'addr_parish' : 'addr:parish',
+            'addr_lc_village' : 'addr:lc_village',
+            'addr_rs_village' : 'addr:rs_village',
+            'addr_settlement' : 'addr:settlement',
+            'addr_zone' : 'addr:zone',
+            'addr_block' : 'addr:block'
+            }
+            edited_data = data.rename(columns = old_names)
+            edited_data.to_csv(newName+'.csv', quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Address columns now conform to OSM Standards!'
+        print '				'
+    else:
+        filenames = args.file
+        newName = raw_input("Enter File Name: ")
+        for filename in filenames:
+            data = read_csv(args.file)
+            old_names = {
+            'addr_district' : 'addr:district',
+            'addr_county' : 'addr:county',
+            'addr_subcounty' : 'addr:subcounty',
+            'addr_parish' : 'addr:parish',
+            'addr_lc_village' : 'addr:lc_village',
+            'addr_rs_village' : 'addr:rs_village',
+            'addr_settlement' : 'addr:settlement',
+            'addr_zone' : 'addr:zone',
+            'addr_block' : 'addr:block'
+            }
+            edited_data = data.rename(columns = old_names)
+            edited_data.to_csv(newName+'.csv', quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Address columns now conform to OSM Standards!'
+        print '				'
 
 ## Single file reformat of _ to : for osm
 
 elif args.file and args.osmconform:
-	if args.file.startswith("'/"):
-		filenames = args.file
-		for filename in filenames:
-			data = read_csv(args.file+filename)
-			old_names = {
-			'addr_district' : 'addr:district',
-			'addr_county' : 'addr:county',
-			'addr_subcounty' : 'addr:subcounty',
-			'addr_parish' : 'addr:parish',
-			'addr_lc_village' : 'addr:lc_village',
-			'addr_rs_village' : 'addr:rs_village',
-			'addr_settlement' : 'addr:settlement',
-			'addr_zone' : 'addr:zone',
-			'addr_block' : 'addr:block'
-			}
-			edited_data = data.rename(columns = old_names)
-			edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Address columns now conform to OSM Standards!'
-		print '				'
-	elif args.file.endswith('/'):
-		filenames = args.file
-		for filename in filenames:
-			data = read_csv(args.file+filename)
-			old_names = {
-			'addr_district' : 'addr:district',
-			'addr_county' : 'addr:county',
-			'addr_subcounty' : 'addr:subcounty',
-			'addr_parish' : 'addr:parish',
-			'addr_lc_village' : 'addr:lc_village',
-			'addr_rs_village' : 'addr:rs_village',
-			'addr_settlement' : 'addr:settlement',
-			'addr_zone' : 'addr:zone',
-			'addr_block' : 'addr:block'
-			}
-			edited_data = data.rename(columns = old_names)
-			edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Address columns now conform to OSM Standards!'
-		print '				'
-	else:
-		filenames = args.file
-		for filename in filenames:
-			data = read_csv(args.file)
-			old_names = {
-			'addr_district' : 'addr:district',
-			'addr_county' : 'addr:county',
-			'addr_subcounty' : 'addr:subcounty',
-			'addr_parish' : 'addr:parish',
-			'addr_lc_village' : 'addr:lc_village',
-			'addr_rs_village' : 'addr:rs_village',
-			'addr_settlement' : 'addr:settlement',
-			'addr_zone' : 'addr:zone',
-			'addr_block' : 'addr:block'
-			}
-			edited_data = data.rename(columns = old_names)
-			edited_data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Address columns now conform to OSM Standards!'
-		print '				'
+    if args.file.startswith("'/"):
+        filenames = args.file
+        for filename in filenames:
+            data = read_csv(args.file+filename)
+            old_names = {
+            'addr_district' : 'addr:district',
+            'addr_county' : 'addr:county',
+            'addr_subcounty' : 'addr:subcounty',
+            'addr_parish' : 'addr:parish',
+            'addr_lc_village' : 'addr:lc_village',
+            'addr_rs_village' : 'addr:rs_village',
+            'addr_settlement' : 'addr:settlement',
+            'addr_zone' : 'addr:zone',
+            'addr_block' : 'addr:block'
+            }
+            edited_data = data.rename(columns = old_names)
+            edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Address columns now conform to OSM Standards!'
+        print '				'
+    elif args.file.endswith('/'):
+        filenames = args.file
+        for filename in filenames:
+            data = read_csv(args.file+filename)
+            old_names = {
+            'addr_district' : 'addr:district',
+            'addr_county' : 'addr:county',
+            'addr_subcounty' : 'addr:subcounty',
+            'addr_parish' : 'addr:parish',
+            'addr_lc_village' : 'addr:lc_village',
+            'addr_rs_village' : 'addr:rs_village',
+            'addr_settlement' : 'addr:settlement',
+            'addr_zone' : 'addr:zone',
+            'addr_block' : 'addr:block'
+            }
+            edited_data = data.rename(columns = old_names)
+            edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Address columns now conform to OSM Standards!'
+        print '				'
+    else:
+        filenames = args.file
+        for filename in filenames:
+            data = read_csv(args.file)
+            old_names = {
+            'addr_district' : 'addr:district',
+            'addr_county' : 'addr:county',
+            'addr_subcounty' : 'addr:subcounty',
+            'addr_parish' : 'addr:parish',
+            'addr_lc_village' : 'addr:lc_village',
+            'addr_rs_village' : 'addr:rs_village',
+            'addr_settlement' : 'addr:settlement',
+            'addr_zone' : 'addr:zone',
+            'addr_block' : 'addr:block'
+            }
+            edited_data = data.rename(columns = old_names)
+            edited_data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Address columns now conform to OSM Standards!'
+        print '				'
 
 
 ## Single file fix of field kobo server lat/lon information  - allows for a custom out file name
 
 elif args.file and args.fixlatlon and args.name:
-	filenames = args.file
-	newName = raw_input("Enter File Name: ")
-	for filename in filenames:
-		data = read_csv(args.file)
-		old_names = {
-		'_cbi_facility_point_latitude' : 'latitude',
-		'_cbi_facility_point_longitude' : 'longitude',
-		'_education_facility_point_latitude' : 'latitude',
-		'_education_facility_point_longitude' : 'longitude',
-		'_health_facility_point_latitude' : 'latitude',
-		'_health_facility_point_longitude' : 'longitude',
-		'_other_facilities_point_latitude' : 'latitude',
-		'_other_facilities_point_longitude' : 'longitude',
-		'_community_name_latitude' : 'latitude',
-		'_community_name_longitude' : 'longitude',
-		'_community_geopoint_latitude' : 'latitude',
-		'_community_geopoint_longitude' : 'longitude',
-		'_wash_facility_point_latitude' : 'latitude',
-		'_wash_facility_point_longitude' : 'longitude',
-		'_water_facility_point_latitude': 'latitude',
-		'_water_facility_point_longitude': 'longitude',
-		}
-		edited_data = data.rename(columns = old_names)
-		edited_data.to_csv(newName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-	print '				'
-	print 'Fix of lat/lon complete!'
-	print '				'
+    filenames = args.file
+    newName = raw_input("Enter File Name: ")
+    for filename in filenames:
+        data = read_csv(args.file)
+        old_names = {
+        '_cbi_facility_point_latitude' : 'latitude',
+        '_cbi_facility_point_longitude' : 'longitude',
+        '_education_facility_point_latitude' : 'latitude',
+        '_education_facility_point_longitude' : 'longitude',
+        '_health_facility_point_latitude' : 'latitude',
+        '_health_facility_point_longitude' : 'longitude',
+        '_other_facilities_point_latitude' : 'latitude',
+        '_other_facilities_point_longitude' : 'longitude',
+        '_community_name_latitude' : 'latitude',
+        '_community_name_longitude' : 'longitude',
+        '_community_geopoint_latitude' : 'latitude',
+        '_community_geopoint_longitude' : 'longitude',
+        '_wash_facility_point_latitude' : 'latitude',
+        '_wash_facility_point_longitude' : 'longitude',
+        '_water_facility_point_latitude': 'latitude',
+        '_water_facility_point_longitude': 'longitude',
+        }
+        edited_data = data.rename(columns = old_names)
+        edited_data.to_csv(newName+'.csv', quoting=csv.QUOTE_ALL, index=False)
+    print '				'
+    print 'Fix of lat/lon complete!'
+    print '				'
 
 ## Single file fix of field kobo server lat/lon information 
 
 elif args.file and args.fixlatlon:
-	if args.file.startswith("'/"):
-		filenames = args.file
-		for filename in filenames:
-			data = read_csv(args.file+filename)
-			old_names = {
-			'_cbi_facility_point_latitude' : 'latitude',
-			'_cbi_facility_point_longitude' : 'longitude',
-			'_education_facility_point_latitude' : 'latitude',
-			'_education_facility_point_longitude' : 'longitude',
-			'_health_facility_point_latitude' : 'latitude',
-			'_health_facility_point_longitude' : 'longitude',
-			'_other_facilities_point_latitude' : 'latitude',
-			'_other_facilities_point_longitude' : 'longitude',
-			'_community_name_latitude' : 'latitude',
-			'_community_name_longitude' : 'longitude',
-			'_community_geopoint_latitude' : 'latitude',
-			'_community_geopoint_longitude' : 'longitude',
-			'_wash_facility_point_latitude' : 'latitude',
-			'_wash_facility_point_longitude' : 'longitude',
-			'_water_facility_point_latitude': 'latitude',
-			'_water_facility_point_longitude': 'longitude',
-			}
-			edited_data = data.rename(columns = old_names)
-			edited_data.to_csv(filename+'_editedlatlon.csv', quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Fix of lat/lon complete!'
-		print '				'
-	else:
-		filenames = args.file
-		for filename in filenames:
-			data = read_csv(args.file)
-			old_names = {
-			'_cbi_facility_point_latitude' : 'latitude',
-			'_cbi_facility_point_longitude' : 'longitude',
-			'_education_facility_point_latitude' : 'latitude',
-			'_education_facility_point_longitude' : 'longitude',
-			'_health_facility_point_latitude' : 'latitude',
-			'_health_facility_point_longitude' : 'longitude',
-			'_other_facilities_point_latitude' : 'latitude',
-			'_other_facilities_point_longitude' : 'longitude',
-			'_community_name_latitude' : 'latitude',
-			'_community_name_longitude' : 'longitude',
-			'_community_geopoint_latitude' : 'latitude',
-			'_community_geopoint_longitude' : 'longitude',
-			'_wash_facility_point_latitude' : 'latitude',
-			'_wash_facility_point_longitude' : 'longitude',
-			'_water_facility_point_latitude': 'latitude',
-			'_water_facility_point_longitude': 'longitude',
-			}
-			edited_data = data.rename(columns = old_names)
-			edited_data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Fix of lat/lon complete!'
-		print '				'
+    if args.file.startswith("'/"):
+        filenames = args.file
+        for filename in filenames:
+            data = read_csv(args.file+filename)
+            old_names = {
+            '_cbi_facility_point_latitude' : 'latitude',
+            '_cbi_facility_point_longitude' : 'longitude',
+            '_education_facility_point_latitude' : 'latitude',
+            '_education_facility_point_longitude' : 'longitude',
+            '_health_facility_point_latitude' : 'latitude',
+            '_health_facility_point_longitude' : 'longitude',
+            '_other_facilities_point_latitude' : 'latitude',
+            '_other_facilities_point_longitude' : 'longitude',
+            '_community_name_latitude' : 'latitude',
+            '_community_name_longitude' : 'longitude',
+            '_community_geopoint_latitude' : 'latitude',
+            '_community_geopoint_longitude' : 'longitude',
+            '_wash_facility_point_latitude' : 'latitude',
+            '_wash_facility_point_longitude' : 'longitude',
+            '_water_facility_point_latitude': 'latitude',
+            '_water_facility_point_longitude': 'longitude',
+            }
+            edited_data = data.rename(columns = old_names)
+            edited_data.to_csv(filename+'_editedlatlon.csv', quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Fix of lat/lon complete!'
+        print '				'
+    else:
+        filenames = args.file
+        for filename in filenames:
+            data = read_csv(args.file)
+            old_names = {
+            '_cbi_facility_point_latitude' : 'latitude',
+            '_cbi_facility_point_longitude' : 'longitude',
+            '_education_facility_point_latitude' : 'latitude',
+            '_education_facility_point_longitude' : 'longitude',
+            '_health_facility_point_latitude' : 'latitude',
+            '_health_facility_point_longitude' : 'longitude',
+            '_other_facilities_point_latitude' : 'latitude',
+            '_other_facilities_point_longitude' : 'longitude',
+            '_community_name_latitude' : 'latitude',
+            '_community_name_longitude' : 'longitude',
+            '_community_geopoint_latitude' : 'latitude',
+            '_community_geopoint_longitude' : 'longitude',
+            '_wash_facility_point_latitude' : 'latitude',
+            '_wash_facility_point_longitude' : 'longitude',
+            '_water_facility_point_latitude': 'latitude',
+            '_water_facility_point_longitude': 'longitude',
+            }
+            edited_data = data.rename(columns = old_names)
+            edited_data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Fix of lat/lon complete!'
+        print '				'
 
 ## Batch remove duplicate columns
 
 elif args.file and args.batchremoveduplicates:
-	if args.file.endswith('/'):
-		filenames = os.listdir(args.file)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				data = read_csv(args.file+filename)
-				edited_data = data.drop(list(data.filter(regex = '/')), axis = 1)
-				edited_data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Batch removal of duplicate/unnecessary columns complete!'
-		print '				'
+    if args.file.endswith('/'):
+        filenames = os.listdir(args.file)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                data = read_csv(args.file+filename)
+                edited_data = data.drop(list(data.filter(regex = '/')), axis = 1)
+                edited_data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Batch removal of duplicate/unnecessary columns complete!'
+        print '				'
 
-	elif args.file == '.':
-		path = os.getcwd()
-		filenames = os.listdir(path)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				data = read_csv(filename)
-				edited_data = data.drop(list(data.filter(regex = '/')), axis = 1)
-				edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Batch removal of duplicate/unnecessary columns complete!'
-		print '				'
-	else:
-		print 'You have selected the wrong argument. Please try again.'
+    elif args.file == '.':
+        path = os.getcwd()
+        filenames = os.listdir(path)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                data = read_csv(filename)
+                edited_data = data.drop(list(data.filter(regex = '/')), axis = 1)
+                edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Batch removal of duplicate/unnecessary columns complete!'
+        print '				'
+    else:
+        print 'You have selected the wrong argument. Please try again.'
 
 ## Single file duplicate columns removal - allows for a custom out file name
 
 elif args.file and args.removeduplicates and args.name:
-	data = read_csv(args.file)
-	fileName = raw_input("Enter File Name: ")
-	filtered_data = data.drop(list(data.filter(regex = '/')), axis = 1)
-	filtered_data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-	print '				'
-	print 'Removed duplicate/unnecessary columns!'
-	print '				'
+    data = read_csv(args.file)
+    fileName = raw_input("Enter File Name: ")
+    filtered_data = data.drop(list(data.filter(regex = '/')), axis = 1)
+    filtered_data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
+    print '				'
+    print 'Removed duplicate/unnecessary columns!'
+    print '				'
 
 ## Single file duplicate columns removal
 
 elif args.file and args.removeduplicates:
-	data = read_csv(args.file)
-	filtered_data = data.drop(list(data.filter(regex = '/')), axis = 1)
-	filtered_data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-	print '				'
-	print 'Removed duplicate/unnecessary columns!'
-	print '				'
+    data = read_csv(args.file)
+    filtered_data = data.drop(list(data.filter(regex = '/')), axis = 1)
+    filtered_data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
+    print '				'
+    print 'Removed duplicate/unnecessary columns!'
+    print '				'
 
 ## Batch remove empty columns
 
 elif args.file and args.batchremovecolumn:
-	if args.file.endswith('/'):
-		filenames = os.listdir(args.file)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				data = read_csv(args.file+filename)
-				edited_data = data.dropna(axis='columns', how='all')
-				edited_data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Batch removal of empty columns complete!'
-		print '				'
+    if args.file.endswith('/'):
+        filenames = os.listdir(args.file)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                data = read_csv(args.file+filename)
+                edited_data = data.dropna(axis='columns', how='all')
+                edited_data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Batch removal of empty columns complete!'
+        print '				'
 
-	elif args.file == '.':
-		path = os.getcwd()
-		filenames = os.listdir(path)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				data = read_csv(filename)
-				edited_data = data.dropna(axis='columns', how='all')
-				edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Batch removal of empty columns complete!'
-		print '				'
-	else:
-		print 'You have selected the wrong argument. Please try again.'
+    elif args.file == '.':
+        path = os.getcwd()
+        filenames = os.listdir(path)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                data = read_csv(filename)
+                edited_data = data.dropna(axis='columns', how='all')
+                edited_data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Batch removal of empty columns complete!'
+        print '				'
+    else:
+        print 'You have selected the wrong argument. Please try again.'
 
 
 ## Single file empty columns removal - allows for a custom out file name
 
 elif args.file and args.removecolumn and args.name:
-	data = read_csv(args.file)
-	fileName = raw_input("Enter File Name: ")
-	filtered_data = data.dropna(axis='columns', how='all')
-	filtered_data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-	print '				'
-	print 'Removed blank columns!'
-	print '				'
+    data = read_csv(args.file)
+    fileName = raw_input("Enter File Name: ")
+    filtered_data = data.dropna(axis='columns', how='all')
+    filtered_data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
+    print '				'
+    print 'Removed blank columns!'
+    print '				'
 
 ## Single file empty column removal
 
 elif args.file and args.removecolumn:
-	data = read_csv(args.file)
-	filtered_data = data.dropna(axis='columns', how='all')
-	filtered_data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-	print '				'
-	print 'Removed blank columns!'
-	print '				'
+    data = read_csv(args.file)
+    filtered_data = data.dropna(axis='columns', how='all')
+    filtered_data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
+    print '				'
+    print 'Removed blank columns!'
+    print '				'
 
 
 ## Batch remove non-osm fields
 
 elif args.file and args.batchremoveosmfield:
-	if args.file.endswith('/'):
-		filenames = os.listdir(args.file)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				data = read_csv(args.file+filename)
-				data.drop('start', axis=1, inplace=True, errors='ignore')
-				data.drop('end', axis=1, inplace=True, errors='ignore')
-				data.drop('today', axis=1, inplace=True, errors='ignore')
-				data.drop('deviceid', axis=1, inplace=True, errors='ignore')
-				data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
-				data.drop('simserial', axis=1, inplace=True, errors='ignore')
-				data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
-				data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
-				data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('status_representative', axis=1, inplace=True, errors='ignore')
-				data.drop('name_representative', axis=1, inplace=True, errors='ignore')
-				data.drop('contact_phone_number', axis=1, inplace=True, errors='ignore')
-				data.drop('settlement_or_non_settlement', axis=1, inplace=True, errors='ignore')
-				data.drop('urban_or_rural', axis=1, inplace=True, errors='ignore')
-				data.drop('status_representative_other', axis=1, inplace=True, errors='ignore')
-				data.drop('surveyor_comments', axis=1, inplace=True, errors='ignore')
-				data.drop('phonenumber', axis=1, inplace=True, errors='ignore')
-				data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
-				data.drop('thanks', axis=1, inplace=True, errors='ignore')
-				data.drop('__version__', axis=1, inplace=True, errors='ignore')
-				data.drop('_id', axis=1, inplace=True, errors='ignore')
-				data.drop('_uuid', axis=1, inplace=True, errors='ignore')
-				data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
-				data.drop('_index', axis=1, inplace=True, errors='ignore')
-				data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Batch removal of non-osm fields complete!'
-		print '				'
+    if args.file.endswith('/'):
+        filenames = os.listdir(args.file)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                data = read_csv(args.file+filename)
+                data.drop('start', axis=1, inplace=True, errors='ignore')
+                data.drop('end', axis=1, inplace=True, errors='ignore')
+                data.drop('today', axis=1, inplace=True, errors='ignore')
+                data.drop('deviceid', axis=1, inplace=True, errors='ignore')
+                data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
+                data.drop('simserial', axis=1, inplace=True, errors='ignore')
+                data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
+                data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+                data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('status_representative', axis=1, inplace=True, errors='ignore')
+                data.drop('name_representative', axis=1, inplace=True, errors='ignore')
+                data.drop('contact_phone_number', axis=1, inplace=True, errors='ignore')
+                data.drop('settlement_or_non_settlement', axis=1, inplace=True, errors='ignore')
+                data.drop('urban_or_rural', axis=1, inplace=True, errors='ignore')
+                data.drop('status_representative_other', axis=1, inplace=True, errors='ignore')
+                data.drop('surveyor_comments', axis=1, inplace=True, errors='ignore')
+                data.drop('phonenumber', axis=1, inplace=True, errors='ignore')
+                data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
+                data.drop('thanks', axis=1, inplace=True, errors='ignore')
+                data.drop('__version__', axis=1, inplace=True, errors='ignore')
+                data.drop('_id', axis=1, inplace=True, errors='ignore')
+                data.drop('_uuid', axis=1, inplace=True, errors='ignore')
+                data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
+                data.drop('_index', axis=1, inplace=True, errors='ignore')
+                data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Batch removal of non-osm fields complete!'
+        print '				'
 
-	elif args.file == '.':
-		path = os.getcwd()
-		filenames = os.listdir(path)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				data = read_csv(filename)
-				data.drop('start', axis=1, inplace=True, errors='ignore')
-				data.drop('end', axis=1, inplace=True, errors='ignore')
-				data.drop('today', axis=1, inplace=True, errors='ignore')
-				data.drop('deviceid', axis=1, inplace=True, errors='ignore')
-				data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
-				data.drop('simserial', axis=1, inplace=True, errors='ignore')
-				data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
-				data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
-				data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('status_representative', axis=1, inplace=True, errors='ignore')
-				data.drop('name_representative', axis=1, inplace=True, errors='ignore')
-				data.drop('contact_phone_number', axis=1, inplace=True, errors='ignore')
-				data.drop('settlement_or_non_settlement', axis=1, inplace=True, errors='ignore')
-				data.drop('urban_or_rural', axis=1, inplace=True, errors='ignore')
-				data.drop('status_representative_other', axis=1, inplace=True, errors='ignore')
-				data.drop('surveyor_comments', axis=1, inplace=True, errors='ignore')
-				data.drop('phonenumber', axis=1, inplace=True, errors='ignore')
-				data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
-				data.drop('thanks', axis=1, inplace=True, errors='ignore')
-				data.drop('__version__', axis=1, inplace=True, errors='ignore')
-				data.drop('_id', axis=1, inplace=True, errors='ignore')
-				data.drop('_uuid', axis=1, inplace=True, errors='ignore')
-				data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
-				data.drop('_index', axis=1, inplace=True, errors='ignore')
-				data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Batch removal of non-osm fields complete!'
-		print '				'
-	else:
-		print 'You have selected the wrong argument. Please try again.'
+    elif args.file == '.':
+        path = os.getcwd()
+        filenames = os.listdir(path)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                data = read_csv(filename)
+                data.drop('start', axis=1, inplace=True, errors='ignore')
+                data.drop('end', axis=1, inplace=True, errors='ignore')
+                data.drop('today', axis=1, inplace=True, errors='ignore')
+                data.drop('deviceid', axis=1, inplace=True, errors='ignore')
+                data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
+                data.drop('simserial', axis=1, inplace=True, errors='ignore')
+                data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
+                data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+                data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('status_representative', axis=1, inplace=True, errors='ignore')
+                data.drop('name_representative', axis=1, inplace=True, errors='ignore')
+                data.drop('contact_phone_number', axis=1, inplace=True, errors='ignore')
+                data.drop('settlement_or_non_settlement', axis=1, inplace=True, errors='ignore')
+                data.drop('urban_or_rural', axis=1, inplace=True, errors='ignore')
+                data.drop('status_representative_other', axis=1, inplace=True, errors='ignore')
+                data.drop('surveyor_comments', axis=1, inplace=True, errors='ignore')
+                data.drop('phonenumber', axis=1, inplace=True, errors='ignore')
+                data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
+                data.drop('thanks', axis=1, inplace=True, errors='ignore')
+                data.drop('__version__', axis=1, inplace=True, errors='ignore')
+                data.drop('_id', axis=1, inplace=True, errors='ignore')
+                data.drop('_uuid', axis=1, inplace=True, errors='ignore')
+                data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
+                data.drop('_index', axis=1, inplace=True, errors='ignore')
+                data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Batch removal of non-osm fields complete!'
+        print '				'
+    else:
+        print 'You have selected the wrong argument. Please try again.'
 
 
 ## Single file osm cleaning columns removal - allows for a custom out file name
 
 elif args.file and args.removeosmfield and args.name:
-	data = read_csv(args.file)
-	fileName = raw_input("Enter File Name: ")
-	data.drop('surveyor_name', axis=1, inplace=True, errors='ignore')
-	data.drop('surveyor_name_other', axis=1, inplace=True, errors='ignore')
-	data.drop('start', axis=1, inplace=True, errors='ignore')
-	data.drop('end', axis=1, inplace=True, errors='ignore')
-	data.drop('today', axis=1, inplace=True, errors='ignore')
-	data.drop('deviceid', axis=1, inplace=True, errors='ignore')
-	data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
-	data.drop('simserial', axis=1, inplace=True, errors='ignore')
-	data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')x
-	data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
-	data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
-	data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('status_representative', axis=1, inplace=True, errors='ignore')
-	data.drop('name_representative', axis=1, inplace=True, errors='ignore')
-	data.drop('contact_phone_number', axis=1, inplace=True, errors='ignore')
-	data.drop('settlement_or_non_settlement', axis=1, inplace=True, errors='ignore')
-	data.drop('urban_or_rural', axis=1, inplace=True, errors='ignore')
-	data.drop('status_representative_other', axis=1, inplace=True, errors='ignore')
-	data.drop('surveyor_comments', axis=1, inplace=True, errors='ignore')
-	data.drop('phonenumber', axis=1, inplace=True, errors='ignore')
-	data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
-	data.drop('thanks', axis=1, inplace=True, errors='ignore')
-	data.drop('__version__', axis=1, inplace=True, errors='ignore')
-	data.drop('_id', axis=1, inplace=True, errors='ignore')
-	data.drop('_uuid', axis=1, inplace=True, errors='ignore')
-	data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
-	data.drop('_index', axis=1, inplace=True, errors='ignore')
-	data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-	print '				'
-	print 'Removed non-osm fields!'
-	print '				'
+    data = read_csv(args.file)
+    fileName = raw_input("Enter File Name: ")
+    data.drop('surveyor_name', axis=1, inplace=True, errors='ignore')
+    data.drop('surveyor_name_other', axis=1, inplace=True, errors='ignore')
+    data.drop('start', axis=1, inplace=True, errors='ignore')
+    data.drop('end', axis=1, inplace=True, errors='ignore')
+    data.drop('today', axis=1, inplace=True, errors='ignore')
+    data.drop('deviceid', axis=1, inplace=True, errors='ignore')
+    data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
+    data.drop('simserial', axis=1, inplace=True, errors='ignore')
+    data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
+    data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+    data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('status_representative', axis=1, inplace=True, errors='ignore')
+    data.drop('name_representative', axis=1, inplace=True, errors='ignore')
+    data.drop('contact_phone_number', axis=1, inplace=True, errors='ignore')
+    data.drop('settlement_or_non_settlement', axis=1, inplace=True, errors='ignore')
+    data.drop('urban_or_rural', axis=1, inplace=True, errors='ignore')
+    data.drop('status_representative_other', axis=1, inplace=True, errors='ignore')
+    data.drop('surveyor_comments', axis=1, inplace=True, errors='ignore')
+    data.drop('phonenumber', axis=1, inplace=True, errors='ignore')
+    data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
+    data.drop('thanks', axis=1, inplace=True, errors='ignore')
+    data.drop('__version__', axis=1, inplace=True, errors='ignore')
+    data.drop('_id', axis=1, inplace=True, errors='ignore')
+    data.drop('_uuid', axis=1, inplace=True, errors='ignore')
+    data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
+    data.drop('_index', axis=1, inplace=True, errors='ignore')
+    data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
+    print '				'
+    print 'Removed non-osm fields!'
+    print '				'
 
 ## Single file osm cleaning column removal
 
 elif args.file and args.removeosmfield:
-	data = read_csv(args.file)
-	data.drop('start', axis=1, inplace=True, errors='ignore')
-	data.drop('end', axis=1, inplace=True, errors='ignore')
-	data.drop('today', axis=1, inplace=True, errors='ignore')
-	data.drop('deviceid', axis=1, inplace=True, errors='ignore')
-	data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
-	data.drop('simserial', axis=1, inplace=True, errors='ignore')
-	data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
-	data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
-	data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('status_representative', axis=1, inplace=True, errors='ignore')
-	data.drop('name_representative', axis=1, inplace=True, errors='ignore')
-	data.drop('contact_phone_number', axis=1, inplace=True, errors='ignore')
-	data.drop('settlement_or_non_settlement', axis=1, inplace=True, errors='ignore')
-	data.drop('urban_or_rural', axis=1, inplace=True, errors='ignore')
-	data.drop('status_representative_other', axis=1, inplace=True, errors='ignore')
-	data.drop('surveyor_comments', axis=1, inplace=True, errors='ignore')
-	data.drop('phonenumber', axis=1, inplace=True, errors='ignore')
-	data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
-	data.drop('thanks', axis=1, inplace=True, errors='ignore')
-	data.drop('__version__', axis=1, inplace=True, errors='ignore')
-	data.drop('_id', axis=1, inplace=True, errors='ignore')
-	data.drop('_uuid', axis=1, inplace=True, errors='ignore')
-	data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
-	data.drop('_index', axis=1, inplace=True, errors='ignore')
-	data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-	print '				'
-	print 'Removed non-osm fields!'
-	print '				'
+    data = read_csv(args.file)
+    data.drop('start', axis=1, inplace=True, errors='ignore')
+    data.drop('end', axis=1, inplace=True, errors='ignore')
+    data.drop('today', axis=1, inplace=True, errors='ignore')
+    data.drop('deviceid', axis=1, inplace=True, errors='ignore')
+    data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
+    data.drop('simserial', axis=1, inplace=True, errors='ignore')
+    data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
+    data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+    data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('status_representative', axis=1, inplace=True, errors='ignore')
+    data.drop('name_representative', axis=1, inplace=True, errors='ignore')
+    data.drop('contact_phone_number', axis=1, inplace=True, errors='ignore')
+    data.drop('settlement_or_non_settlement', axis=1, inplace=True, errors='ignore')
+    data.drop('urban_or_rural', axis=1, inplace=True, errors='ignore')
+    data.drop('status_representative_other', axis=1, inplace=True, errors='ignore')
+    data.drop('surveyor_comments', axis=1, inplace=True, errors='ignore')
+    data.drop('phonenumber', axis=1, inplace=True, errors='ignore')
+    data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
+    data.drop('thanks', axis=1, inplace=True, errors='ignore')
+    data.drop('__version__', axis=1, inplace=True, errors='ignore')
+    data.drop('_id', axis=1, inplace=True, errors='ignore')
+    data.drop('_uuid', axis=1, inplace=True, errors='ignore')
+    data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
+    data.drop('_index', axis=1, inplace=True, errors='ignore')
+    data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
+    print '				'
+    print 'Removed non-osm fields!'
+    print '				'
 
 ## Batch remove unneeded form-fields!
 
 elif args.file and args.batchremovefield:
-	if args.file.endswith('/'):
-		filenames = os.listdir(args.file)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				data = read_csv(args.file+filename)
-				data.drop('start', axis=1, inplace=True, errors='ignore')
-				data.drop('end', axis=1, inplace=True, errors='ignore')
-				data.drop('today', axis=1, inplace=True, errors='ignore')
-				data.drop('deviceid', axis=1, inplace=True, errors='ignore')
-				data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
-				data.drop('simserial', axis=1, inplace=True, errors='ignore')
-				data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
-				data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
-				data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
-				data.drop('thanks', axis=1, inplace=True, errors='ignore')
-				data.drop('__version__', axis=1, inplace=True, errors='ignore')
-				data.drop('_id', axis=1, inplace=True, errors='ignore')
-				data.drop('_uuid', axis=1, inplace=True, errors='ignore')
-				data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
-				data.drop('_index', axis=1, inplace=True, errors='ignore')
-				data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Batch removal of unneeded form-fields! complete!'
-		print '				'
+    if args.file.endswith('/'):
+        filenames = os.listdir(args.file)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                data = read_csv(args.file+filename)
+                data.drop('start', axis=1, inplace=True, errors='ignore')
+                data.drop('end', axis=1, inplace=True, errors='ignore')
+                data.drop('today', axis=1, inplace=True, errors='ignore')
+                data.drop('deviceid', axis=1, inplace=True, errors='ignore')
+                data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
+                data.drop('simserial', axis=1, inplace=True, errors='ignore')
+                data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
+                data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+                data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
+                data.drop('thanks', axis=1, inplace=True, errors='ignore')
+                data.drop('__version__', axis=1, inplace=True, errors='ignore')
+                data.drop('_id', axis=1, inplace=True, errors='ignore')
+                data.drop('_uuid', axis=1, inplace=True, errors='ignore')
+                data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
+                data.drop('_index', axis=1, inplace=True, errors='ignore')
+                data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Batch removal of unneeded form-fields! complete!'
+        print '				'
 
-	elif args.file == '.':
-		path = os.getcwd()
-		filenames = os.listdir(path)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				data = read_csv(filename)
-				data.drop('start', axis=1, inplace=True, errors='ignore')
-				data.drop('end', axis=1, inplace=True, errors='ignore')
-				data.drop('today', axis=1, inplace=True, errors='ignore')
-				data.drop('deviceid', axis=1, inplace=True, errors='ignore')
-				data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
-				data.drop('simserial', axis=1, inplace=True, errors='ignore')
-				data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
-				data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
-				data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
-				data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-				data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
-				data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
-				data.drop('thanks', axis=1, inplace=True, errors='ignore')
-				data.drop('__version__', axis=1, inplace=True, errors='ignore')
-				data.drop('_id', axis=1, inplace=True, errors='ignore')
-				data.drop('_uuid', axis=1, inplace=True, errors='ignore')
-				data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
-				data.drop('_index', axis=1, inplace=True, errors='ignore')
-				data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Batch removal of unneeded form-fields! complete!'
-		print '				'
-	else:
-		print 'You have selected the wrong argument. Please try again.'
+    elif args.file == '.':
+        path = os.getcwd()
+        filenames = os.listdir(path)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                data = read_csv(filename)
+                data.drop('start', axis=1, inplace=True, errors='ignore')
+                data.drop('end', axis=1, inplace=True, errors='ignore')
+                data.drop('today', axis=1, inplace=True, errors='ignore')
+                data.drop('deviceid', axis=1, inplace=True, errors='ignore')
+                data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
+                data.drop('simserial', axis=1, inplace=True, errors='ignore')
+                data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
+                data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
+                data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+                data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+                data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
+                data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
+                data.drop('thanks', axis=1, inplace=True, errors='ignore')
+                data.drop('__version__', axis=1, inplace=True, errors='ignore')
+                data.drop('_id', axis=1, inplace=True, errors='ignore')
+                data.drop('_uuid', axis=1, inplace=True, errors='ignore')
+                data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
+                data.drop('_index', axis=1, inplace=True, errors='ignore')
+                data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Batch removal of unneeded form-fields! complete!'
+        print '				'
+    else:
+        print 'You have selected the wrong argument. Please try again.'
 
 
 ## Single file cleaning unneeded form-fields! - allows for a custom out file name
 
 elif args.file and args.removefield and args.name:
-	data = read_csv(args.file)
-	fileName = raw_input("Enter File Name: ")
-	data.drop('start', axis=1, inplace=True, errors='ignore')
-	data.drop('end', axis=1, inplace=True, errors='ignore')
-	data.drop('today', axis=1, inplace=True, errors='ignore')
-	data.drop('deviceid', axis=1, inplace=True, errors='ignore')
-	data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
-	data.drop('simserial', axis=1, inplace=True, errors='ignore')
-	data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
-	data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
-	data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
-	data.drop('thanks', axis=1, inplace=True, errors='ignore')
-	data.drop('__version__', axis=1, inplace=True, errors='ignore')
-	data.drop('_id', axis=1, inplace=True, errors='ignore')
-	data.drop('_uuid', axis=1, inplace=True, errors='ignore')
-	data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
-	data.drop('_index', axis=1, inplace=True, errors='ignore')
-	data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-	print '				'
-	print 'Removed unneeded form-fields!'
-	print '				'
+    data = read_csv(args.file)
+    fileName = raw_input("Enter File Name: ")
+    data.drop('start', axis=1, inplace=True, errors='ignore')
+    data.drop('end', axis=1, inplace=True, errors='ignore')
+    data.drop('today', axis=1, inplace=True, errors='ignore')
+    data.drop('deviceid', axis=1, inplace=True, errors='ignore')
+    data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
+    data.drop('simserial', axis=1, inplace=True, errors='ignore')
+    data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
+    data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+    data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
+    data.drop('thanks', axis=1, inplace=True, errors='ignore')
+    data.drop('__version__', axis=1, inplace=True, errors='ignore')
+    data.drop('_id', axis=1, inplace=True, errors='ignore')
+    data.drop('_uuid', axis=1, inplace=True, errors='ignore')
+    data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
+    data.drop('_index', axis=1, inplace=True, errors='ignore')
+    data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
+    print '				'
+    print 'Removed unneeded form-fields!'
+    print '				'
 
 ## Single file cleaning unneeded form-fields!
 
 elif args.file and args.removefield:
-	data = read_csv(args.file)
-	data.drop('start', axis=1, inplace=True, errors='ignore')
-	data.drop('end', axis=1, inplace=True, errors='ignore')
-	data.drop('today', axis=1, inplace=True, errors='ignore')
-	data.drop('deviceid', axis=1, inplace=True, errors='ignore')
-	data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
-	data.drop('simserial', axis=1, inplace=True, errors='ignore')
-	data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
-	data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
-	data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
-	data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
-	data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
-	data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
-	data.drop('thanks', axis=1, inplace=True, errors='ignore')
-	data.drop('__version__', axis=1, inplace=True, errors='ignore')
-	data.drop('_id', axis=1, inplace=True, errors='ignore')
-	data.drop('_uuid', axis=1, inplace=True, errors='ignore')
-	data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
-	data.drop('_index', axis=1, inplace=True, errors='ignore')
-	data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-	print '				'
-	print 'Removed unneeded form-fields!'
-	print '				'
+    data = read_csv(args.file)
+    data.drop('start', axis=1, inplace=True, errors='ignore')
+    data.drop('end', axis=1, inplace=True, errors='ignore')
+    data.drop('today', axis=1, inplace=True, errors='ignore')
+    data.drop('deviceid', axis=1, inplace=True, errors='ignore')
+    data.drop('subscriberid', axis=1, inplace=True, errors='ignore')
+    data.drop('simserial', axis=1, inplace=True, errors='ignore')
+    data.drop('wash_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_wash_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_wash_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('other_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_other_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_other_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('cbi_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_cbi_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_cbi_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('health_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_health_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_health_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('education_facility_point', axis=1, inplace=True, errors='ignore')
+    data.drop('_education_facility_point_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_education_facility_point_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('community_geopoint', axis=1, inplace=True, errors='ignore')
+    data.drop('_community_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_community_geopoint_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('Humanitarian_OpenStreetMap_Survey', axis=1, inplace=True, errors='ignore')
+    data.drop('water_geopoint', axis=1, inplace=True, errors='ignore')
+    data.drop('_water_geopoint_altitude', axis=1, inplace=True, errors='ignore')
+    data.drop('_water_geopoint_precision', axis=1, inplace=True, errors='ignore')
+    data.drop('thanks', axis=1, inplace=True, errors='ignore')
+    data.drop('__version__', axis=1, inplace=True, errors='ignore')
+    data.drop('_id', axis=1, inplace=True, errors='ignore')
+    data.drop('_uuid', axis=1, inplace=True, errors='ignore')
+    data.drop('_submission_time', axis=1, inplace=True, errors='ignore')
+    data.drop('_index', axis=1, inplace=True, errors='ignore')
+    data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
+    print '				'
+    print 'Removed unneeded form-fields!'
+    print '				'
 
 ## Batch file title casing reformat
 
 elif args.file and args.batchtitlecase:
-	if args.file.endswith('/'):
-		filenames = os.listdir(args.file)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				capitalizer = lambda x: str(x).title()
-				data = read_csv(args.file+filename,na_filter=False)
-				try:
-					data["name"] = data["name"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["alt_name"] = data["alt_name"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["name_representative"] = data["name_representative"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["name_health_professional"] = data["name_health_professional"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["health_facility"] = data["health_facility"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_district"] = data["addr_district"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_county"] = data["addr_county"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_subcounty"] = data["addr_subcounty"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_parish"] = data["addr_parish"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_lc_village"] = data["addr_lc_village"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_settlement"] = data["addr_settlement"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_zone"] = data["addr_zone"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_block"] = data["addr_block"].apply(capitalizer)
-				except KeyError:
-					pass
-				data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Batch formatted column values in Title Casing complete!'
-		print '				'
+    if args.file.endswith('/'):
+        filenames = os.listdir(args.file)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                capitalizer = lambda x: str(x).title()
+                data = read_csv(args.file+filename,na_filter=False)
+                try:
+                    data["name"] = data["name"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["alt_name"] = data["alt_name"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["name_representative"] = data["name_representative"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["name_health_professional"] = data["name_health_professional"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["health_facility"] = data["health_facility"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_district"] = data["addr_district"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_county"] = data["addr_county"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_subcounty"] = data["addr_subcounty"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_parish"] = data["addr_parish"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_lc_village"] = data["addr_lc_village"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_settlement"] = data["addr_settlement"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_zone"] = data["addr_zone"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_block"] = data["addr_block"].apply(capitalizer)
+                except KeyError:
+                    pass
+                data.to_csv(args.file+filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Batch formatted column values in Title Casing complete!'
+        print '				'
 
-	elif args.file == '.':
-		path = os.getcwd()
-		filenames = os.listdir(path)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				capitalizer = lambda x: str(x).title()
-				data = read_csv(filename,na_filter=False)
-				try:
-					data["name"] = data["name"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["alt_name"] = data["alt_name"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["name_representative"] = data["name_representative"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["name_health_professional"] = data["name_health_professional"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["health_facility"] = data["health_facility"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_district"] = data["addr_district"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_county"] = data["addr_county"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_subcounty"] = data["addr_subcounty"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_parish"] = data["addr_parish"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_lc_village"] = data["addr_lc_village"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_settlement"] = data["addr_settlement"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_zone"] = data["addr_zone"].apply(capitalizer)
-				except KeyError:
-					pass
-				try:
-					data["addr_block"] = data["addr_block"].apply(capitalizer)
-				except KeyError:
-					pass
-				data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
-		print '				'
-		print 'Batch formatted column values in Title Casing complete!'
-		print '				'
+    elif args.file == '.':
+        path = os.getcwd()
+        filenames = os.listdir(path)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                capitalizer = lambda x: str(x).title()
+                data = read_csv(filename,na_filter=False)
+                try:
+                    data["name"] = data["name"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["alt_name"] = data["alt_name"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["name_representative"] = data["name_representative"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["name_health_professional"] = data["name_health_professional"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["health_facility"] = data["health_facility"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_district"] = data["addr_district"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_county"] = data["addr_county"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_subcounty"] = data["addr_subcounty"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_parish"] = data["addr_parish"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_lc_village"] = data["addr_lc_village"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_settlement"] = data["addr_settlement"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_zone"] = data["addr_zone"].apply(capitalizer)
+                except KeyError:
+                    pass
+                try:
+                    data["addr_block"] = data["addr_block"].apply(capitalizer)
+                except KeyError:
+                    pass
+                data.to_csv(filename, quoting=csv.QUOTE_ALL, index=False)
+        print '				'
+        print 'Batch formatted column values in Title Casing complete!'
+        print '				'
 
 ## Single file title casing reformat - allows for custom output name
 # TODO add an exception for roman letters to not capitalize them
 
 elif args.file and args.titlecase and args.name:
-	capitalizer = lambda x: str(x).title()
+    capitalizer = lambda x: str(x).title()
 
     def capitalize(fieldval):
         roman_letters = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
@@ -1196,80 +1196,8 @@ elif args.file and args.titlecase and args.name:
                 outval.append(val.title())
         return ' '.join(outval)
 
-	data = read_csv(args.file,na_filter=False)
-	fileName = raw_input("Enter File Name: ")
-	try:
-		data["name"] = capitalize(data["name"])
-	except KeyError:
-		pass
-	try:
-		data["alt_name"] = capitalize(data["alt_name"])
-	except KeyError:
-		pass
-	try:
-		data["name_representative"] = capitalize(data["name_representative"])
-	except KeyError:
-		pass
-	try:
-		data["name_health_professional"] = capitalize(data["name_health_professional"])
-	except KeyError:
-		pass
-	try:
-		data["health_facility"] = capitalize(data["health_facility"])
-	except KeyError:
-		pass
-	try:
-		data["addr_district"] = capitalize(data["addr_district"])
-	except KeyError:
-		pass
-	try:
-		data["addr_county"] = capitalize(data["addr_county"])
-	except KeyError:
-		pass
-	try:
-		data["addr_subcounty"] = capitalize(data["addr_subcounty"])
-	except KeyError:
-		pass
-	try:
-		data["addr_parish"] = capitalize(data["addr_parish"])
-	except KeyError:
-		pass
-	try:
-		data["addr_lc_village"] = capitalize(data["addr_lc_village"])
-	except KeyError:
-		pass
-	try:
-		data["addr_settlement"] = capitalize(data["addr_settlement"])
-	except KeyError:
-		pass
-	try:
-		data["addr_zone"] = capitalize(data["addr_zone"])
-	except KeyError:
-		pass
-	try:
-		data["addr_block"] = capitalize(data["addr_block"])
-	except KeyError:
-		pass
-	data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
-	print '				'
-	print 'Formatted column values in Title Casing!'
-	print '				'
-
-## Single file title casing reformat
-
-elif args.file and args.titlecase:
-	capitalizer = lambda x: str(x).title()
-    def capitalize(fieldval):
-        roman_letters = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
-        vals = fieldval.split(' ') # split field string by whitespace
-        outval = []
-        for val in vals:
-            if val in roman_letters:
-                outval.append(val)
-            else:
-                outval.append(val.title())
-        return ' '.join(outval)
-	data = read_csv(args.file,na_filter=False)
+    data = read_csv(args.file,na_filter=False)
+    fileName = raw_input("Enter File Name: ")
     try:
         data["name"] = capitalize(data["name"])
     except KeyError:
@@ -1321,105 +1249,179 @@ elif args.file and args.titlecase:
     try:
         data["addr_block"] = capitalize(data["addr_block"])
     except KeyError:
-		pass
-	data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
-	print '				'
-	print 'Formatted column values in Title Casing!'
-	print '				'
+        pass
+    data.to_csv(fileName+'.csv', quoting=csv.QUOTE_ALL, index=False)
+    print '				'
+    print 'Formatted column values in Title Casing!'
+    print '				'
+
+## Single file title casing reformat
+
+elif args.file and args.titlecase:
+    capitalizer = lambda x: str(x).title()
+
+    def capitalize(fieldval):
+        roman_letters = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
+        vals = fieldval.split(' ') # split field string by whitespace
+        outval = []
+        for val in vals:
+            if val in roman_letters:
+                outval.append(val)
+            else:
+                outval.append(val.title())
+        return ' '.join(outval)
+
+    data = read_csv(args.file,na_filter=False)
+    try:
+        data["name"] = capitalize(data["name"])
+    except KeyError:
+        pass
+    try:
+        data["alt_name"] = capitalize(data["alt_name"])
+    except KeyError:
+        pass
+    try:
+        data["name_representative"] = capitalize(data["name_representative"])
+    except KeyError:
+        pass
+    try:
+        data["name_health_professional"] = capitalize(data["name_health_professional"])
+    except KeyError:
+        pass
+    try:
+        data["health_facility"] = capitalize(data["health_facility"])
+    except KeyError:
+        pass
+    try:
+        data["addr_district"] = capitalize(data["addr_district"])
+    except KeyError:
+        pass
+    try:
+        data["addr_county"] = capitalize(data["addr_county"])
+    except KeyError:
+        pass
+    try:
+        data["addr_subcounty"] = capitalize(data["addr_subcounty"])
+    except KeyError:
+        pass
+    try:
+        data["addr_parish"] = capitalize(data["addr_parish"])
+    except KeyError:
+        pass
+    try:
+        data["addr_lc_village"] = capitalize(data["addr_lc_village"])
+    except KeyError:
+        pass
+    try:
+        data["addr_settlement"] = capitalize(data["addr_settlement"])
+    except KeyError:
+        pass
+    try:
+        data["addr_zone"] = capitalize(data["addr_zone"])
+    except KeyError:
+        pass
+    try:
+        data["addr_block"] = capitalize(data["addr_block"])
+    except KeyError:
+        pass
+    data.to_csv(args.file, quoting=csv.QUOTE_ALL, index=False)
+    print '				'
+    print 'Formatted column values in Title Casing!'
+    print '				'
 
 ## Batch clean of leading/trailing whitespace
 
 elif args.file and args.batchcleanwhitespace:
-	if args.file.endswith('/'):
-		filenames = os.listdir(args.file)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				file1 = open(args.file+filename.encode('utf-8'), 'rb')
-				reader = csv.reader(file1)
-				new_rows_list = []
-				for row in reader:
-					new_rows = [col.strip() for col in row]
-					new_rows_list.append(new_rows)
-				file1.close()
+    if args.file.endswith('/'):
+        filenames = os.listdir(args.file)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                file1 = open(args.file+filename.encode('utf-8'), 'rb')
+                reader = csv.reader(file1)
+                new_rows_list = []
+                for row in reader:
+                    new_rows = [col.strip() for col in row]
+                    new_rows_list.append(new_rows)
+                file1.close()
 
-				file2 = open(args.file+filename.encode('utf-8'), 'wb')
-				writer = csv.writer(file2)
-				writer.writerows(new_rows_list)
-				file2.close()
-		print '				'
-		print 'Batch cleaning of leading and trailing whitespace complete!'
-		print '				'
+                file2 = open(args.file+filename.encode('utf-8'), 'wb')
+                writer = csv.writer(file2)
+                writer.writerows(new_rows_list)
+                file2.close()
+        print '				'
+        print 'Batch cleaning of leading and trailing whitespace complete!'
+        print '				'
 
-	elif args.file == '.':
-		path = os.getcwd()
-		filenames = os.listdir(path)
-		for filename in filenames:
-			if filename.endswith('.csv'):
-				file1 = open(filename.encode('utf-8'), 'rb')
-				reader = csv.reader(file1)
-				new_rows_list = []
-				for row in reader:
-					new_rows = [col.strip() for col in row]
-					new_rows_list.append(new_rows)
-				file1.close()
+    elif args.file == '.':
+        path = os.getcwd()
+        filenames = os.listdir(path)
+        for filename in filenames:
+            if filename.endswith('.csv'):
+                file1 = open(filename.encode('utf-8'), 'rb')
+                reader = csv.reader(file1)
+                new_rows_list = []
+                for row in reader:
+                    new_rows = [col.strip() for col in row]
+                    new_rows_list.append(new_rows)
+                file1.close()
 
-				file2 = open(filename.encode('utf-8'), 'wb')
-				writer = csv.writer(file2)
-				writer.writerows(new_rows_list)
-				file2.close()
-		print '				'
-		print 'Batch cleaning of leading and trailing whitespace complete!'
-		print '				'
-	else:
-		print 'You have selected the wrong argument. Please try again.'
+                file2 = open(filename.encode('utf-8'), 'wb')
+                writer = csv.writer(file2)
+                writer.writerows(new_rows_list)
+                file2.close()
+        print '				'
+        print 'Batch cleaning of leading and trailing whitespace complete!'
+        print '				'
+    else:
+        print 'You have selected the wrong argument. Please try again.'
 
 
 ## Single file fix of leading/trailing whitespace - with custom name
 
 elif args.file and args.cleanwhitespace and args.name:
-	fileName = raw_input("Enter File Name: ")
-	with open(args.file.encode('utf-8')) as inFile:
-		r = csv.DictReader(inFile)
-		next(r, None)
-		fieldnames = r.fieldnames
-		w = csv.DictWriter(open(fileName+'.csv','wb'), fieldnames=fieldnames)
-		w.writeheader()
-		for row in r:
-			w.writerow({fieldname: str(value).strip() for (fieldname, value) in row.items()})
-	print '				'
-	print 'Cleaned leading and trailing whitespace!'
-	print '				'
+    fileName = raw_input("Enter File Name: ")
+    with open(args.file.encode('utf-8')) as inFile:
+        r = csv.DictReader(inFile)
+        next(r, None)
+        fieldnames = r.fieldnames
+        w = csv.DictWriter(open(fileName+'.csv','wb'), fieldnames=fieldnames)
+        w.writeheader()
+        for row in r:
+            w.writerow({fieldname: str(value).strip() for (fieldname, value) in row.items()})
+    print '				'
+    print 'Cleaned leading and trailing whitespace!'
+    print '				'
 
 ## Single file fix of leading/trailing whitespace
 
 elif args.file and args.cleanwhitespace:
-	file1 = open(args.file.encode('utf-8'), 'rb')
-	reader = csv.reader(file1)
-	new_rows_list = []
-	for row in reader:
-		new_rows = [col.strip() for col in row]
-		new_rows_list.append(new_rows)
-	file1.close()
+    file1 = open(args.file.encode('utf-8'), 'rb')
+    reader = csv.reader(file1)
+    new_rows_list = []
+    for row in reader:
+        new_rows = [col.strip() for col in row]
+        new_rows_list.append(new_rows)
+    file1.close()
 
-	file2 = open(args.file.encode('utf-8'), 'wb')
-	writer = csv.writer(file2)
-	writer.writerows(new_rows_list)
-	file2.close()
-	print '				'
-	print 'Cleaned leading and trailing whitespace!'
-	print '				'
+    file2 = open(args.file.encode('utf-8'), 'wb')
+    writer = csv.writer(file2)
+    writer.writerows(new_rows_list)
+    file2.close()
+    print '				'
+    print 'Cleaned leading and trailing whitespace!'
+    print '				'
 
 ## If a file/directory is provided without any other arguments
 
 elif args.file:
-	print '						  '
-	print 'Please provide a valid argument. More than a file/directory.'
-	print '						  '
+    print '						  '
+    print 'Please provide a valid argument. More than a file/directory.'
+    print '						  '
 
 ## If funky stuff happens
 
 else:
-	print '						  '
-	print 'Something went wrong...'
-	print '						  '
-	print 'Please make sure you provide a csv/directoryOfCsvs as your input, and you have selected a proper argument.'
+    print '						  '
+    print 'Something went wrong...'
+    print '						  '
+    print 'Please make sure you provide a csv/directoryOfCsvs as your input, and you have selected a proper argument.'
