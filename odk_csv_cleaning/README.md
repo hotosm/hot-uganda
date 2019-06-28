@@ -8,7 +8,7 @@ You can run each argument individually on a given file, or as part of a batch pr
 
 ## Dependencies
 
-* python2.7
+* python3.x
 * pandas
 
 ### Overview
@@ -17,9 +17,14 @@ The instructions found below go into detail on how to install python (2.7), pips
 
 If you have a working version of python27 on your PATH, you can run the script one time (calling --help) to initiate a pandas install using pip. The script will then install the pandas module via pip for you, without you having to do any additional steps.
 
+
 #### Instructions for installing python: 
 
-* https://www.python.org/downloads/release/python-2714/
+**You can skip the installation of python when you have QGIS on your machine**
+ 
+> Use the OsGeoShell and make sure you have pandas in there as well
+
+* https://www.python.org/downloads/release/python-373/
 * https://www.howtogeek.com/197947/how-to-install-python-on-windows/
 * https://askubuntu.com/questions/458061/how-do-i-install-python-through-the-terminal
 
